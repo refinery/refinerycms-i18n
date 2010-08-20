@@ -124,4 +124,4 @@ module Refinery
   end
 end
 
-::Refinery::I18n.setup! if RefinerySetting.table_exists?
+::Refinery::I18n.setup! if defined?(RefinerySetting) and RefinerySetting.table_exists?
