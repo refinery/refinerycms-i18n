@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
   s.version           = %q{0.9.8}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2010-08-20}
+  s.date              = %q{2010-08-21}
   s.summary           = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -72,14 +72,15 @@ Gem::Specification.new do |s|
     'config/locales/zh-CN.yml',
     'config/locales/zh-TW.yml',
     'i18n-js-readme.rdoc',
-    'init.rb',
     'lib',
     'lib/gemspec.rb',
-    'lib/i18n-js.rb',
-    'lib/i18n-js.yml',
-    'lib/i18n.js',
-    'lib/i18n.rb',
-    'lib/i18n_filter.rb',
+    'lib/refinery',
+    'lib/refinery/i18n-filter.rb',
+    'lib/refinery/i18n-js.rb',
+    'lib/refinery/i18n-js.yml',
+    'lib/refinery/i18n.js',
+    'lib/refinery/i18n.rb',
+    'lib/refinery/translate.rb',
     'lib/tasks',
     'lib/tasks/i18n-js_tasks.rake',
     'lib/tasks/translate.rake',
@@ -88,7 +89,6 @@ Gem::Specification.new do |s|
     'lib/translate/keys.rb',
     'lib/translate/log.rb',
     'lib/translate/storage.rb',
-    'lib/translate.rb',
     'Rakefile',
     'REFINERY_README',
     'test',
