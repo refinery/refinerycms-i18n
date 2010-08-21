@@ -1,6 +1,27 @@
 # Encoding: UTF-8 <-- required, please leave this in.
+require 'refinery'
+
 module Refinery
-  class I18n
+  module I18n
+    class Engine < Rails::Engine
+      config.before_initialize do
+        require File.expand_path('../i18n-filter', __FILE__)
+        require File.expand_path('../i18n-js', __FILE__)
+        require File.expand_path('../translate', __FILE__)
+
+        # TODO: Use new method available_locales once Rails is upgraded, see:
+        # http://github.com/svenfuchs/i18n/commit/411f8fe7c8f3f89e9b6b921fa62ed66cb92f3af4
+        def I18n.valid_locales
+          I18n.backend.send(:init_translations) unless I18n.backend.initialized?
+          backend.send(:translations).keys.reject { |locale| locale == :root }
+        end
+      end
+
+      config.to_prepare do
+        ::Refinery::I18n.setup! if defined?(RefinerySetting) and RefinerySetting.table_exists?
+      end
+    end
+
     class << self
 
       attr_accessor :enabled, :current_locale, :locales, :default_locale, :default_frontend_locale
