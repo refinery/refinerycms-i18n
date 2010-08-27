@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.version           = %q{#{version}}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
   s.date              = %q{#{Time.now.strftime('%Y-%m-%d')}}
-  s.summary           = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
+  s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
   s.authors           = %w(Resolve\\ Digital)
