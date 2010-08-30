@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-version = '0.9.8.2'
+version = '0.9.8.3'
 raise "Could not get version so gemspec can not be built" if version.nil?
 files = Dir.glob("**/*").flatten.reject do |file|
   file =~ /\.gem(spec)?$/
@@ -16,6 +16,8 @@ Gem::Specification.new do |s|
   s.homepage          = %q{http://refinerycms.com}
   s.authors           = %w(Resolve\\ Digital)
   s.require_paths     = %w(lib)
+
+  s.add_dependency    'routing-filter', '~> 0.1.6'
 
   s.files             = [
     '#{files.join("',\n    '")}'

@@ -1,5 +1,6 @@
 # Encoding: UTF-8 <-- required, please leave this in.
 require 'refinery'
+require 'routing-filter'
 
 module Refinery
   module I18n
