@@ -8,21 +8,14 @@ module Refinery
         require File.expand_path('../i18n-filter', __FILE__)
         require File.expand_path('../i18n-js', __FILE__)
         require File.expand_path('../translate', __FILE__)
-
-        # TODO: Use new method available_locales once Rails is upgraded, see:
-        # http://github.com/svenfuchs/i18n/commit/411f8fe7c8f3f89e9b6b921fa62ed66cb92f3af4
-        def I18n.valid_locales
-          I18n.backend.send(:init_translations) unless I18n.backend.initialized?
-          backend.send(:translations).keys.reject { |locale| locale == :root }
-        end
       end
 
       config.to_prepare do
-        ::Refinery::ApplicationController.class_eval do
+        ::Refinery::ApplicationController.class_eval %{
           def default_url_options(options={})
-            ::Refinery::I18n.enabled? ? { :locale => I18n.locale } : {}
+            ::Refinery::I18n.enabled? ? { :locale => ::I18n.locale } : {}
           end
-          
+
           prepend_before_filter :find_or_set_locale
 
           def find_or_set_locale
@@ -31,7 +24,7 @@ module Refinery
                 ::I18n.locale = locale
               elsif locale.present? and locale != ::Refinery::I18n.default_frontend_locale
                 params[:locale] = I18n.locale = ::Refinery::I18n.default_frontend_locale
-                redirect_to(params, :notice => "The locale '#{locale.to_s}' is not supported.") and return
+                redirect_to(params, :notice => "The locale '\#{locale.to_s}' is not supported.") and return
               else
                 ::I18n.locale = ::Refinery::I18n.default_frontend_locale
               end
@@ -39,20 +32,20 @@ module Refinery
           end
 
           protected :default_url_options, :find_or_set_locale
-        end
+        }
 
-        ::Refinery::AdminBaseController.class_eval do
+        ::Refinery::AdminBaseController.class_eval %{
           def find_or_set_locale
             if (params[:set_locale].present? and ::Refinery::I18n.locales.include?(params[:set_locale].to_sym))
               ::Refinery::I18n.current_locale = params[:set_locale].to_sym
               redirect_back_or_default(admin_dashboard_path) and return
             else
-              I18n.locale = ::Refinery::I18n.current_locale
+              ::I18n.locale = ::Refinery::I18n.current_locale
             end
           end
 
           protected :find_or_set_locale
-        end
+        }
 
         ::Refinery::I18n.setup! if defined?(RefinerySetting) and RefinerySetting.table_exists?
       end
