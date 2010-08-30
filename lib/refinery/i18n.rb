@@ -18,6 +18,42 @@ module Refinery
       end
 
       config.to_prepare do
+        ::Refinery::ApplicationController.class_eval do
+          def default_url_options(options={})
+            ::Refinery::I18n.enabled? ? { :locale => I18n.locale } : {}
+          end
+          
+          prepend_before_filter :find_or_set_locale
+
+          def find_or_set_locale
+            if ::Refinery::I18n.enabled?
+              if ::Refinery::I18n.has_locale?(locale = params[:locale].try(:to_sym))
+                ::I18n.locale = locale
+              elsif locale.present? and locale != ::Refinery::I18n.default_frontend_locale
+                params[:locale] = I18n.locale = ::Refinery::I18n.default_frontend_locale
+                redirect_to(params, :notice => "The locale '#{locale.to_s}' is not supported.") and return
+              else
+                ::I18n.locale = ::Refinery::I18n.default_frontend_locale
+              end
+            end
+          end
+
+          protected :default_url_options, :find_or_set_locale
+        end
+
+        ::Refinery::AdminBaseController.class_eval do
+          def find_or_set_locale
+            if (params[:set_locale].present? and ::Refinery::I18n.locales.include?(params[:set_locale].to_sym))
+              ::Refinery::I18n.current_locale = params[:set_locale].to_sym
+              redirect_back_or_default(admin_dashboard_path) and return
+            else
+              I18n.locale = ::Refinery::I18n.current_locale
+            end
+          end
+
+          protected :find_or_set_locale
+        end
+
         ::Refinery::I18n.setup! if defined?(RefinerySetting) and RefinerySetting.table_exists?
       end
     end
