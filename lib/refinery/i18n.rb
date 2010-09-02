@@ -12,7 +12,7 @@ module Refinery
       end
 
       config.to_prepare do
-        ::Refinery::ApplicationController.class_eval %{
+        ::ApplicationController.class_eval %{
           def default_url_options(options={})
             ::Refinery::I18n.enabled? ? { :locale => ::I18n.locale } : {}
           end
