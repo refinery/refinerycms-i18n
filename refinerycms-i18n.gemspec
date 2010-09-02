@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.authors           = %w(Resolve\ Digital)
   s.require_paths     = %w(lib)
 
+  s.add_dependency    'refinerycms', '~> 0.9.8'
   s.add_dependency    'routing-filter', '~> 0.1.6'
 
   s.files             = [
