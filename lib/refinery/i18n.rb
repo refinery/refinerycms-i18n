@@ -47,9 +47,12 @@ module Refinery
 
           protected :find_or_set_locale
         }
-
+      end
+      
+      config.after_initialize do
         ::Refinery::I18n.setup! if defined?(RefinerySetting) and RefinerySetting.table_exists?
       end
+      
     end
 
     class << self
