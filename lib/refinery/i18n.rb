@@ -48,11 +48,11 @@ module Refinery
           protected :find_or_set_locale
         }
       end
-      
+
       config.after_initialize do
         ::Refinery::I18n.setup! if defined?(RefinerySetting) and RefinerySetting.table_exists?
       end
-      
+
     end
 
     class << self
@@ -85,11 +85,18 @@ module Refinery
 
       def current_locale=(locale)
         @current_locale = locale.to_sym
-        RefinerySetting[:i18n_translation_current_locale] = {
+        value = {
           :value => locale.to_sym,
           :scoping => 'refinery',
           :callback_proc_as_string => %q{::Refinery::I18n.setup!}
         }
+        # handles a change in Refinery API
+        if RefinerySetting.methods.map(&:to_sym).include?(:set)
+          RefinerySetting.set(:i18n_translation_current_locale, value)
+        else
+          RefinerySetting[:i18n_translation_current_locale] = value
+        end
+
         ::I18n.locale = locale.to_sym
       end
 
