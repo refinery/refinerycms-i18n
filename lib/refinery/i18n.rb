@@ -75,11 +75,11 @@ module Refinery
         unless enabled?
           ::Refinery::I18n.current_locale = ::Refinery::I18n.default_locale
         else
-          @current_locale ||= RefinerySetting.find_or_set(:i18n_translation_current_locale,
+          (@current_locale ||= RefinerySetting.find_or_set(:i18n_translation_current_locale,
             ::Refinery::I18n.default_locale, {
             :scoping => 'refinery',
             :callback_proc_as_string => %q{::Refinery::I18n.setup!}
-          })
+          })).to_sym
         end
       end
 
@@ -97,23 +97,23 @@ module Refinery
           RefinerySetting[:i18n_translation_current_locale] = value
         end
 
-        ::I18n.locale = locale.to_sym
+        ::I18n.locale = @current_locale
       end
 
       def default_locale
-        @default_locale ||= RefinerySetting.find_or_set(:i18n_translation_default_locale,
+        (@default_locale ||= RefinerySetting.find_or_set(:i18n_translation_default_locale,
           :en, {
           :callback_proc_as_string => %q{::Refinery::I18n.setup!},
           :scoping => 'refinery'
-        })
+        })).to_sym
       end
 
       def default_frontend_locale
-        @default_frontend_locale ||= RefinerySetting.find_or_set(:i18n_translation_default_frontend_locale,
+        (@default_frontend_locale ||= RefinerySetting.find_or_set(:i18n_translation_default_frontend_locale,
         :en, {
           :scoping => 'refinery',
           :callback_proc_as_string => %q{::Refinery::I18n.setup!}
-        })
+        })).to_sym
       end
 
       def locales

@@ -1,15 +1,15 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
-  s.version           = %q{0.9.8.6}
+  s.version           = %q{0.9.8.7}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2010-09-08}
+  s.date              = %q{2010-09-16}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
   s.authors           = %w(Resolve\ Digital)
   s.require_paths     = %w(lib)
 
-  s.add_dependency    'refinerycms', '~> 0.9.8'
+  s.add_dependency    'refinerycms', '>= 0.9.8'
   s.add_dependency    'routing-filter', '~> 0.1.6'
 
   s.files             = [
