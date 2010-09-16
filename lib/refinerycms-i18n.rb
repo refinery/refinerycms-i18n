@@ -1,0 +1,1 @@
+require File.expand_path('../refinery/i18n', __FILE__)
