@@ -84,6 +84,7 @@ Gem::Specification.new do |s|
     'lib/refinery/i18n.js',
     'lib/refinery/i18n.rb',
     'lib/refinery/translate.rb',
+    'lib/refinerycms-i18n.rb',
     'lib/tasks',
     'lib/tasks/i18n-js_tasks.rake',
     'lib/tasks/translate.rake',
