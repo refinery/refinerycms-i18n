@@ -3,7 +3,7 @@ module RoutingFilter
 
     def around_recognize(path, env, &block)
       if ::Refinery::I18n.enabled?
-        if path =~ %r{^/(#{::Refinery::I18n.locales.keys.join('|')})/?}
+        if path =~ %r{^/(#{::Refinery::I18n.locales.keys.join('|')})(/|$)}
           path.sub! %r(^/(([a-zA-Z\-_])*)(?=/|$)) do
             ::I18n.locale = $1
             ''
