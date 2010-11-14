@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
-  s.version           = %q{0.9.8.8}
+  s.version           = %q{0.9.8.9}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2010-10-08}
+  s.date              = %q{2010-11-14}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -94,7 +94,6 @@ Gem::Specification.new do |s|
     'lib/translate/log.rb',
     'lib/translate/storage.rb',
     'Rakefile',
-    'REFINERY_README',
     'test',
     'test/i18n-test.html',
     'test/i18n-test.js',
