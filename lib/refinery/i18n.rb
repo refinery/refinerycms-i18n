@@ -156,6 +156,16 @@ module Refinery
         self.load_refinery_locales!
         self.load_app_locales!
         self.set_default_locale!
+
+        # ensure running latest locales (this is awfully brittle).
+        locales = RefinerySetting.respond_to?(:get) ? RefinerySetting.get(:i18n_translation_locales, :scoping => 'refinery') : RefinerySetting[:i18n_translation_locales]
+        if locales.present? and locales.keys.exclude?(:sv)
+          if RefinerySetting.respond_to?(:set)
+            RefinerySetting.set(:i18n_translation_locales, {:value => nil, :scoping => 'refinery'})
+          else
+            RefinerySetting[:i18n_translation_locales] = nil
+          end
+        end
       end
 
       def load_base_locales!
