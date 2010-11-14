@@ -66,7 +66,7 @@ Gem::Specification.new do |s|
     'config/locales/sl.yml',
     'config/locales/sr-Latn.yml',
     'config/locales/sr.yml',
-    'config/locales/sv-SE.yml',
+    'config/locales/sv.yml',
     'config/locales/sw.yml',
     'config/locales/th.rb',
     'config/locales/tr.yml',
