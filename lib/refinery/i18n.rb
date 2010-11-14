@@ -130,7 +130,8 @@ module Refinery
             :'zh-CN' => 'Simple Chinese',
             :de => 'Deutsch',
             :lv => 'Latviski',
-            :ru => 'Русский'
+            :ru => 'Русский',
+            :sv => 'Svenska'
           },
           {
             :scoping => 'refinery',
