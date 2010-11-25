@@ -36,6 +36,8 @@ module Refinery
         }
 
         ::Admin::BaseController.class_eval %{
+          prepend_before_filter :find_or_set_locale
+
           def find_or_set_locale
             if (params[:set_locale].present? and ::Refinery::I18n.locales.include?(params[:set_locale].to_sym))
               ::Refinery::I18n.current_locale = params[:set_locale].to_sym
