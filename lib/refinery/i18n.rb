@@ -35,7 +35,7 @@ module Refinery
           protected :default_url_options, :find_or_set_locale
         }
 
-        ::Refinery::AdminBaseController.class_eval %{
+        ::Admin::BaseController.class_eval %{
           def find_or_set_locale
             if (params[:set_locale].present? and ::Refinery::I18n.locales.include?(params[:set_locale].to_sym))
               ::Refinery::I18n.current_locale = params[:set_locale].to_sym
