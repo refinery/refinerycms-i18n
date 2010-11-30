@@ -12,7 +12,7 @@ module Refinery
       end
 
       config.to_prepare do
-        ::ApplicationController.class_eval %{
+        ::ApplicationController.class_eval do
           def default_url_options(options={})
             ::Refinery::I18n.enabled? ? { :locale => ::I18n.locale } : {}
           end
@@ -25,7 +25,7 @@ module Refinery
                 ::I18n.locale = locale
               elsif locale.present? and locale != ::Refinery::I18n.default_frontend_locale
                 params[:locale] = I18n.locale = ::Refinery::I18n.default_frontend_locale
-                redirect_to(params, :notice => "The locale '\#{locale.to_s}' is not supported.") and return
+                redirect_to(params, :notice => "The locale '#{locale.to_s}' is not supported.") and return
               else
                 ::I18n.locale = ::Refinery::I18n.default_frontend_locale
               end
@@ -33,9 +33,9 @@ module Refinery
           end
 
           protected :default_url_options, :find_or_set_locale
-        }
+        end
 
-        ::Admin::BaseController.class_eval %{
+        ::Admin::BaseController.class_eval do
           prepend_before_filter :find_or_set_locale
 
           def find_or_set_locale
@@ -48,7 +48,7 @@ module Refinery
           end
 
           protected :find_or_set_locale
-        }
+        end
       end
 
       config.after_initialize do
