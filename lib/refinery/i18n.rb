@@ -133,7 +133,8 @@ module Refinery
             :de => 'Deutsch',
             :lv => 'Latviski',
             :ru => 'Русский',
-            :sv => 'Svenska'
+            :sv => 'Svenska',
+            :pl => 'Polski'
           },
           {
             :scoping => 'refinery',
