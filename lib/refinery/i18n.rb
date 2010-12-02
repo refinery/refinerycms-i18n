@@ -59,7 +59,7 @@ module Refinery
 
     class << self
 
-      attr_accessor :enabled, :current_locale, :locales, :default_locale, :default_frontend_locale
+      attr_accessor :enabled, :current_locale, :locales, :default_locale, :default_frontend_locale, :built_in_locales
 
       def enabled?
         # cache this lookup as it gets very expensive.
@@ -119,23 +119,7 @@ module Refinery
       end
 
       def locales
-        @locales ||= RefinerySetting.find_or_set(:i18n_translation_locales, {
-            :en => 'English',
-            :fr => 'Français',
-            :nl => 'Nederlands',
-            :'pt-BR' => 'Português',
-            :da => 'Dansk',
-            :nb => 'Norsk Bokmål',
-            :sl => 'Slovenian',
-            :es => 'Español',
-            :it => 'Italiano',
-            :'zh-CN' => 'Simple Chinese',
-            :de => 'Deutsch',
-            :lv => 'Latviski',
-            :ru => 'Русский',
-            :sv => 'Svenska',
-            :pl => 'Polski'
-          },
+        @locales ||= RefinerySetting.find_or_set(:i18n_translation_locales, self.built_in_locales,
           {
             :scoping => 'refinery',
             :callback_proc_as_string => %q{::Refinery::I18n.setup!}
@@ -170,7 +154,7 @@ module Refinery
           RefinerySetting.find_by_name_and_scoping('i18n_translation_locales', 'refinery').try(:value)
         end
 
-        if locales.present? and locales.is_a?(Hash) and locales.keys.exclude?(:sv)
+        if locales.present? and locales.is_a?(Hash) and locales.keys.exclude?(self.built_in_locales.keys.last)
           value = {:value => nil, :scoping => 'refinery'}
           if RefinerySetting.respond_to?(:set)
             RefinerySetting.set(:i18n_translation_locales, value)
@@ -205,5 +189,23 @@ module Refinery
       end
 
     end
+
+    @built_in_locales = {
+      :en => 'English',
+      :fr => 'Français',
+      :nl => 'Nederlands',
+      :'pt-BR' => 'Português',
+      :da => 'Dansk',
+      :nb => 'Norsk Bokmål',
+      :sl => 'Slovenian',
+      :es => 'Español',
+      :it => 'Italiano',
+      :'zh-CN' => 'Simple Chinese',
+      :de => 'Deutsch',
+      :lv => 'Latviski',
+      :ru => 'Русский',
+      :sv => 'Svenska',
+      :pl => 'Polski'
+    }
   end
 end
