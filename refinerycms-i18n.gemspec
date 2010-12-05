@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
   s.version           = %q{0.9.8.12}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2010-12-02}
+  s.date              = %q{2010-12-05}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.require_paths     = %w(lib)
 
   s.add_dependency    'refinerycms', '>= 0.9.8'
-  s.add_dependency    'routing-filter', '~> 0.1.6'
+  s.add_dependency    'routing-filter', '~> 0.1'
 
   s.files             = [
     'config',
