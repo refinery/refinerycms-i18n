@@ -112,10 +112,18 @@ module Refinery
 
       def default_frontend_locale
         (@default_frontend_locale ||= RefinerySetting.find_or_set(:i18n_translation_default_frontend_locale,
-        :en, {
+          :en, {
           :scoping => 'refinery',
           :callback_proc_as_string => %q{::Refinery::I18n.setup!}
         })).to_sym
+      end
+
+      def frontend_locales
+        @frontend_locales ||= RefinerySetting.find_or_set(:i18n_translation_frontend_locales,
+          [self.default_frontend_locale], {
+          :scoping => 'refinery',
+          :callback_proc_as_string => %q{::Refinery::I18n.setup!}
+        })
       end
 
       def locales
