@@ -22,12 +22,12 @@ module Refinery
           def find_or_set_locale
             if ::Refinery::I18n.enabled?
               if ::Refinery::I18n.has_locale?(locale = params[:locale].try(:to_sym))
-                ::I18n.locale = locale
+                Thread.current[:globalize_locale] = ::I18n.locale = locale
               elsif locale.present? and locale != ::Refinery::I18n.default_frontend_locale
-                params[:locale] = I18n.locale = ::Refinery::I18n.default_frontend_locale
+                Thread.current[:globalize_locale] = params[:locale] = I18n.locale = ::Refinery::I18n.default_frontend_locale
                 redirect_to(params, :notice => "The locale '#{locale.to_s}' is not supported.") and return
               else
-                ::I18n.locale = ::Refinery::I18n.default_frontend_locale
+                Thread.current[:globalize_locale] = ::I18n.locale = ::Refinery::I18n.default_frontend_locale
               end
             end
           end
@@ -36,7 +36,8 @@ module Refinery
         end
 
         ::Admin::BaseController.class_eval do
-          prepend_before_filter :find_or_set_locale
+          # globalize! should be prepended first so that it runs after find_or_set_locale
+          prepend_before_filter :globalize!, :find_or_set_locale
 
           def find_or_set_locale
             if (params[:set_locale].present? and ::Refinery::I18n.locales.include?(params[:set_locale].to_sym))
@@ -47,7 +48,11 @@ module Refinery
             end
           end
 
-          protected :find_or_set_locale
+          def globalize!
+            Thread.current[:globalize_locale] = (params[:switch_locale] || (@page.present? && @page.slug.locale) || ::Refinery::I18n.default_frontend_locale)
+          end
+
+          protected :find_or_set_locale, :globalize!
         end
       end
 
