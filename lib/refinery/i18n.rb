@@ -146,6 +146,7 @@ module Refinery
         @default_locale = nil
         @default_frontend_locale = nil
         @current_locale = nil
+        @frontend_locales = nil
 
         self.load_base_locales!
         self.load_refinery_locales!
