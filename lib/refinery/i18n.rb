@@ -49,7 +49,7 @@ module Refinery
           end
 
           def globalize!
-            Thread.current[:globalize_locale] = (params[:switch_locale] || (@page.present? && @page.slug.locale) || ::Refinery::I18n.default_frontend_locale)
+            Thread.current[:globalize_locale] = (params[:switch_locale] || ::Refinery::I18n.default_frontend_locale)
           end
 
           protected :find_or_set_locale, :globalize!
