@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
-  s.version           = %q{0.9.8.12}
+  s.version           = %q{0.9.9}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2010-12-05}
+  s.date              = %q{2011-01-13}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -74,6 +74,8 @@ Gem::Specification.new do |s|
     'config/locales/vi.yml',
     'config/locales/zh-CN.yml',
     'config/locales/zh-TW.yml',
+    'features',
+    'features/dashboard.feature',
     'i18n-js-readme.rdoc',
     'lib',
     'lib/gemspec.rb',

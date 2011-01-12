@@ -58,6 +58,13 @@ module Refinery
 
       config.after_initialize do
         ::Refinery::I18n.setup! if defined?(RefinerySetting) and RefinerySetting.table_exists?
+
+        Refinery::Plugin.register do |plugin|
+          plugin.name = "refinery_i18n"
+          plugin.version = %q{0.9.9}
+          plugin.hide_from_menu = true
+          plugin.always_allow_access = true
+        end
       end
 
     end
