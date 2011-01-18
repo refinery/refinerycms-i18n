@@ -221,6 +221,7 @@ module Refinery
       :sl => 'Slovenian',
       :es => 'Español',
       :it => 'Italiano',
+      :'zh-TW' => 'Traditional Chinese',
       :'zh-CN' => 'Simple Chinese',
       :de => 'Deutsch',
       :lv => 'Latviski',
