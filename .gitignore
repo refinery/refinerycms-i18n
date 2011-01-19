@@ -1,0 +1,83 @@
+# Rails
+.bundle
+db/*.sqlite3
+db/*.sqlite3-journal
+*.log
+tmp/**/*
+
+# Documentation
+doc/api
+doc/app
+doc/*
+.yardoc
+.yardopts
+
+# Public Uploads
+public/system/*
+public/themes/*
+
+# Public Cache
+public/javascripts/cache
+public/stylesheets/cache
+
+# Vendor Cache
+vendor/cache
+
+# Acts as Indexed
+index/**/*
+
+# Refinery Specific
+*.tmproj
+*.autobackupbyrefinery.*
+/refinerycms-*.gem
+.autotest
+
+# Mac
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# NetBeans
+nbproject
+
+# Eclipse
+.project
+
+# Redcar
+.redcar
+
+# Rubinius
+*.rbc
+
+# Vim
+*.swp
+*.swo
+
+# RubyMine
+.idea
+
+# Backup
+*~
+
+# Capybara Bug
+capybara-*html
+
+# sass
+.sass-cache
+.sass-cache/*
+
+#rvm
+.rvmrc
+.rvmrc.*
+
+# REFINERY CMS DEVELOPMENT ====================================================
+# Always keep this section at the bottom.
+
+config/database.yml
+config/amazon_s3.yml
+config/rackspace_cloudfiles.yml
+your_*.*
+db/schema.rb
+
+# END REFINERY CMS DEVELOPMENT =================================================

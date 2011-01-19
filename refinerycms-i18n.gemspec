@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
-  s.version           = %q{0.9.9.2}
+  s.version           = %q{0.9.9.3}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2011-01-19}
+  s.date              = %q{2011-01-20}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -163,6 +163,7 @@ Gem::Specification.new do |s|
     'public/images/refinery/icons/flags/ee.png',
     'public/images/refinery/icons/flags/eg.png',
     'public/images/refinery/icons/flags/eh.png',
+    'public/images/refinery/icons/flags/el.png',
     'public/images/refinery/icons/flags/en.png',
     'public/images/refinery/icons/flags/england.png',
     'public/images/refinery/icons/flags/er.png',
