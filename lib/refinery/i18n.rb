@@ -29,7 +29,7 @@ module Refinery
                 Thread.current[:globalize_locale] = ::I18n.locale = locale
               elsif locale.present? and locale != ::Refinery::I18n.default_frontend_locale
                 Thread.current[:globalize_locale] = params[:locale] = I18n.locale = ::Refinery::I18n.default_frontend_locale
-                redirect_to(params, :notice => "The locale '#{locale.to_s}' is not supported.") and return
+                redirect_to(params, :notice => "The locale '#{locale}' is not supported.") and return
               else
                 Thread.current[:globalize_locale] = ::I18n.locale = ::Refinery::I18n.default_frontend_locale
               end
