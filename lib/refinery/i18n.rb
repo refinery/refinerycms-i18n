@@ -176,7 +176,7 @@ module Refinery
         end
 
         if locales.present? and locales.is_a?(Hash) and locales.keys.exclude?(self.built_in_locales.keys.last)
-          value = {:value => nil, :scoping => 'refinery'}
+          value = {:value => locales.dup.deep_merge(self.built_in_locales), :scoping => 'refinery'}
           if RefinerySetting.respond_to?(:set)
             RefinerySetting.set(:i18n_translation_locales, value)
           else
@@ -221,13 +221,13 @@ module Refinery
       :sl => 'Slovenian',
       :es => 'Español',
       :it => 'Italiano',
-      :'zh-TW' => 'Traditional Chinese',
-      :'zh-CN' => 'Simple Chinese',
       :de => 'Deutsch',
       :lv => 'Latviski',
       :ru => 'Русский',
       :sv => 'Svenska',
-      :pl => 'Polski'
+      :pl => 'Polski',
+      :'zh-CN' => 'Simple Chinese',
+      :'zh-TW' => 'Traditional Chinese'
     }
   end
 end
