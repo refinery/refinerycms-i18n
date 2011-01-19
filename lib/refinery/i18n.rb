@@ -11,6 +11,10 @@ module Refinery
         require File.expand_path('../translate', __FILE__)
       end
 
+      initializer "serve static assets" do |app|
+        app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
+      end
+
       config.to_prepare do
         ::ApplicationController.class_eval do
           def default_url_options(options={})
@@ -61,7 +65,7 @@ module Refinery
 
         Refinery::Plugin.register do |plugin|
           plugin.name = "refinery_i18n"
-          plugin.version = %q{0.9.9.1}
+          plugin.version = %q{0.9.9.2}
           plugin.hide_from_menu = true
           plugin.always_allow_access = true
         end
