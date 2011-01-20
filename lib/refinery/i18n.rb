@@ -65,7 +65,7 @@ module Refinery
 
         Refinery::Plugin.register do |plugin|
           plugin.name = "refinery_i18n"
-          plugin.version = %q{0.9.9.3}
+          plugin.version = %q{0.9.9.4}
           plugin.hide_from_menu = true
           plugin.always_allow_access = true
         end
@@ -232,7 +232,8 @@ module Refinery
       :pl => 'Polski',
       :'zh-CN' => 'Simple Chinese',
       :'zh-TW' => 'Traditional Chinese',
-      :el => 'Ελληνικά'
+      :el => 'Ελληνικά',
+      :sr => 'Serbian'
     }
   end
 end
