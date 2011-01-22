@@ -230,7 +230,7 @@ module Refinery
       :ru => 'Русский',
       :sv => 'Svenska',
       :pl => 'Polski',
-      :'zh-CN' => 'Simple Chinese',
+      :'zh-CN' => 'Simplified Chinese',
       :'zh-TW' => 'Traditional Chinese',
       :el => 'Ελληνικά',
       :sr => 'Serbian'
