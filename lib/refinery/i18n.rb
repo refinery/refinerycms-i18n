@@ -233,7 +233,8 @@ module Refinery
       :'zh-CN' => 'Simplified Chinese',
       :'zh-TW' => 'Traditional Chinese',
       :el => 'Ελληνικά',
-      :sr => 'Serbian'
+      :rs => 'Srpski'
     }
   end
 end
+
