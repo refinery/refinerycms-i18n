@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.require_paths     = %w(lib)
 
   s.add_dependency    'refinerycms', '>= 0.9.8'
-  s.add_dependency    'routing-filter', '~> 0.1'
+  s.add_dependency    'routing-filter', '>= 0.2.3'
 
   s.files             = [
     'config',
