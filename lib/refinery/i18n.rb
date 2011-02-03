@@ -165,8 +165,7 @@ module Refinery
         @frontend_locales = nil
 
         self.load_base_locales!
-        self.load_refinery_locales!
-        self.load_app_locales!
+        self.load_refinery_locales!        
         self.set_default_locale!
         self.ensure_locales_up_to_date!
       end
@@ -195,10 +194,6 @@ module Refinery
 
       def load_refinery_locales!
         load_locales Refinery.root.join "vendor", "engines", "*", "config", "locales", "*.yml"
-      end
-
-      def load_app_locales!
-        load_locales Rails.root.join "config", "locales", "*.yml"
       end
 
       def set_default_locale!
