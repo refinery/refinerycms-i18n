@@ -65,7 +65,7 @@ module Refinery
 
         Refinery::Plugin.register do |plugin|
           plugin.name = "refinery_i18n"
-          plugin.version = %q{0.9.9.7}
+          plugin.version = %q{0.9.9.8}
           plugin.hide_from_menu = true
           plugin.always_allow_access = true
         end
@@ -75,7 +75,7 @@ module Refinery
 
     class << self
 
-      attr_accessor :enabled, :current_locale, :locales, :default_locale, :default_frontend_locale, :built_in_locales
+      attr_accessor :built_in_locales, :current_locale, :default_locale, :default_frontend_locale, :enabled, :locales
 
       def enabled?
         # cache this lookup as it gets very expensive.
@@ -164,8 +164,6 @@ module Refinery
         @current_locale = nil
         @frontend_locales = nil
 
-        self.load_base_locales!
-        self.load_refinery_locales!        
         self.set_default_locale!
         self.ensure_locales_up_to_date!
       end
@@ -188,24 +186,8 @@ module Refinery
         end
       end
 
-      def load_base_locales!
-        load_locales Pathname.new(__FILE__).parent.join "..", "config", "locales", "*.yml"
-      end
-
-      def load_refinery_locales!
-        load_locales Refinery.root.join "vendor", "engines", "*", "config", "locales", "*.yml"
-      end
-
       def set_default_locale!
         ::I18n.default_locale = ::Refinery::I18n.default_locale
-      end
-
-      def load_locales(locale_files)
-        locale_files = locale_files.to_s if locale_files.is_a? Pathname
-        locale_files = Dir[locale_files] if locale_files.is_a? String
-        locale_files.each do |locale_file|
-          ::I18n.load_path.unshift locale_file
-        end
       end
 
     end
