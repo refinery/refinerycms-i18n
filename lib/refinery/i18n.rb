@@ -1,5 +1,5 @@
 # Encoding: UTF-8 <-- required, please leave this in.
-require 'refinery'
+require 'refinerycms-core'
 require 'routing-filter'
 
 module Refinery
