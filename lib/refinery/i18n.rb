@@ -1,5 +1,9 @@
 # Encoding: UTF-8 <-- required, please leave this in.
-require 'refinerycms-core'
+if defined?(Refinery) && Refinery.version > '0.9.9'
+  require 'refinerycms-core'
+else
+  require 'refinery'
+end
 require 'routing-filter'
 
 module Refinery
