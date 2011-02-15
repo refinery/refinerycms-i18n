@@ -215,7 +215,8 @@ module Refinery
       :'zh-TW' => 'Traditional Chinese',
       :el => 'Ελληνικά',
       :rs => 'Srpski',
-      :cs => 'Česky'
+      :cs => 'Česky',
+      :jp => '日本語'
     }
   end
 end
