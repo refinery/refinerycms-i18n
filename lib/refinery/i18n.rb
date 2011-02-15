@@ -208,7 +208,8 @@ module Refinery
       :el => 'Ελληνικά',
       :rs => 'Srpski',
       :cs => 'Česky',
-      :sk => 'Slovenský'
+      :sk => 'Slovenský',
+      :jp => '日本語'
     }
   end
 end

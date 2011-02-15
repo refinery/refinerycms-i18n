@@ -59,7 +59,7 @@ Gem::Specification.new do |s|
     'config/locales/id.yml',
     'config/locales/is.yml',
     'config/locales/it.yml',
-    'config/locales/ja.yml',
+    'config/locales/jp.yml',
     'config/locales/ko.yml',
     'config/locales/lo.yml',
     'config/locales/lt.yml',

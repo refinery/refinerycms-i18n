@@ -4,7 +4,7 @@
 # contributors:
 #  - Tsutomu Kuroda (t-kuroda@oiax.jp)
 
-ja:
+jp:
   date:
     formats:
       default: "%Y/%m/%d"
