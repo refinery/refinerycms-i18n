@@ -69,7 +69,7 @@ module Refinery
 
         Refinery::Plugin.register do |plugin|
           plugin.name = "refinery_i18n"
-          plugin.version = %q{0.9.9.9}
+          plugin.version = %q{0.9.9.10}
           plugin.hide_from_menu = true
           plugin.always_allow_access = true
         end

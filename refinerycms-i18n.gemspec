@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
-  s.version           = %q{0.9.9.9}
+  s.version           = %q{0.9.9.10}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2011-02-11}
+  s.date              = %q{2011-02-23}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -19,20 +19,29 @@ Gem::Specification.new do |s|
     'config/locales/bg.yml',
     'config/locales/bn-IN.yml',
     'config/locales/bs.yml',
-    'config/locales/ca-ES.yml',
-    'config/locales/cz.rb',
+    'config/locales/ca.yml',
+    'config/locales/cs.rb',
+    'config/locales/cy.yml',
     'config/locales/da.yml',
     'config/locales/de-AT.yml',
+    'config/locales/de-CH.yml',
     'config/locales/de.yml',
     'config/locales/dsb.yml',
     'config/locales/el.yml',
+    'config/locales/en-AU.yml',
+    'config/locales/en-GB.yml',
+    'config/locales/en-US.yml',
+    'config/locales/eo.yml',
     'config/locales/es-AR.yml',
     'config/locales/es-CO.yml',
     'config/locales/es-MX.yml',
+    'config/locales/es-PE.yml',
     'config/locales/es.yml',
     'config/locales/et.yml',
+    'config/locales/eu.yml',
     'config/locales/fa.yml',
     'config/locales/fi.yml',
+    'config/locales/fr-CA.yml',
     'config/locales/fr-CH.yml',
     'config/locales/fr.yml',
     'config/locales/fun',
@@ -40,7 +49,10 @@ Gem::Specification.new do |s|
     'config/locales/fun/gibberish.rb',
     'config/locales/fur.yml',
     'config/locales/gl-ES.yml',
+    'config/locales/gsw-CH.yml',
     'config/locales/he.yml',
+    'config/locales/hi-IN.yml',
+    'config/locales/hi.yml',
     'config/locales/hr.yml',
     'config/locales/hsb.yml',
     'config/locales/hu.yml',
@@ -53,6 +65,7 @@ Gem::Specification.new do |s|
     'config/locales/lt.yml',
     'config/locales/lv.yml',
     'config/locales/mk.yml',
+    'config/locales/mn.yml',
     'config/locales/nb.yml',
     'config/locales/nl.yml',
     'config/locales/nn.yml',
