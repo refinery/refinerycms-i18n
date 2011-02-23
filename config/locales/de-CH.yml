@@ -1,7 +1,7 @@
-# German translations for Ruby on Rails 
+# German (Switzerland) translations for Ruby on Rails 
 # by Clemens Kofler (clemens@railway.at)
 
-de-AT:
+de-CH:
   date:
     formats:
       default: "%d.%m.%Y"
@@ -11,8 +11,8 @@ de-AT:
 
     day_names: [Sonntag, Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag]
     abbr_day_names: [So, Mo, Di, Mi, Do, Fr, Sa]
-    month_names: [~, Jänner, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
-    abbr_month_names: [~, Jän, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez]
+    month_names: [~, Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember]
+    abbr_month_names: [~, Jan, Feb, Mär, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez]
     order:
       - :day
       - :month
@@ -75,12 +75,12 @@ de-AT:
   number:
     format:
       precision: 2
-      separator: ','
-      delimiter: '.'
+      separator: '.'
+      delimiter: "'"
     currency:
       format:
-        unit: '€'
-        format: '%n%u'
+        unit: 'CHF'
+        format: '%u %n'
         separator: 
         delimiter: 
         precision: 
@@ -144,8 +144,8 @@ de-AT:
         wrong_length: "hat die falsche Länge (muss genau %{count} Zeichen haben)"
         taken: "ist bereits vergeben"
         not_a_number: "ist keine Zahl"
-        greater_than: "muss größer als %{count} sein"
-        greater_than_or_equal_to: "muss größer oder gleich %{count} sein"
+        greater_than: "muss grösser als %{count} sein"
+        greater_than_or_equal_to: "muss grösser oder gleich %{count} sein"
         equal_to: "muss genau %{count} sein"
         less_than: "muss kleiner als %{count} sein"
         less_than_or_equal_to: "muss kleiner oder gleich %{count} sein"
