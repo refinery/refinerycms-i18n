@@ -25,51 +25,56 @@ module Refinery
             ::Refinery::I18n.enabled? ? { :locale => ::I18n.locale } : {}
           end
 
-          prepend_before_filter :find_or_set_locale
-
           def find_or_set_locale
             if ::Refinery::I18n.enabled?
               if ::Refinery::I18n.has_locale?(locale = params[:locale].try(:to_sym))
-                Thread.current[:globalize_locale] = ::I18n.locale = locale
+                ::I18n.locale = locale
               elsif locale.present? and locale != ::Refinery::I18n.default_frontend_locale
-                Thread.current[:globalize_locale] = params[:locale] = I18n.locale = ::Refinery::I18n.default_frontend_locale
+                params[:locale] = ::I18n.locale = ::Refinery::I18n.default_frontend_locale
                 redirect_to(params, :notice => "The locale '#{locale}' is not supported.") and return
               else
-                Thread.current[:globalize_locale] = ::I18n.locale = ::Refinery::I18n.default_frontend_locale
+                ::I18n.locale = ::Refinery::I18n.default_frontend_locale
               end
+
+              Thread.current[:globalize_locale] = ::I18n.locale
             end
           end
 
+          prepend_before_filter :find_or_set_locale
           protected :default_url_options, :find_or_set_locale
         end
 
         ::Admin::BaseController.class_eval do
-          # globalize! should be prepended first so that it runs after find_or_set_locale
-          prepend_before_filter :globalize!, :find_or_set_locale
-
           def find_or_set_locale
-            if (params[:set_locale].present? and ::Refinery::I18n.locales.include?(params[:set_locale].to_sym))
+            if (params[:set_locale] and ::Refinery::I18n.locales.keys.map(&:to_sym).include?(params[:set_locale].to_sym))
               ::Refinery::I18n.current_locale = params[:set_locale].to_sym
-              redirect_back_or_default(admin_dashboard_path) and return
+              redirect_back_or_default(admin_root_path) and return
             else
               ::I18n.locale = ::Refinery::I18n.current_locale
             end
           end
 
           def globalize!
-            Thread.current[:globalize_locale] = (params[:switch_locale] || ::Refinery::I18n.default_frontend_locale)
+            if ::Refinery::I18n.frontend_locales.any?
+              if params[:switch_locale]
+                Thread.current[:globalize_locale] = params[:switch_locale].to_sym
+              elsif ::I18n.locale != ::Refinery::I18n.default_frontend_locale
+                Thread.current[:globalize_locale] = ::Refinery::I18n.default_frontend_locale
+              end
+            end
           end
-
-          protected :find_or_set_locale, :globalize!
+          # globalize! should be prepended first so that it runs after find_or_set_locale
+          prepend_before_filter :globalize!, :find_or_set_locale
+          protected :globalize!, :find_or_set_locale
         end
       end
 
       config.after_initialize do
-        ::Refinery::I18n.setup! if defined?(RefinerySetting) and RefinerySetting.table_exists?
+        ::Refinery::I18n.setup!
 
         Refinery::Plugin.register do |plugin|
           plugin.name = "refinery_i18n"
-          plugin.version = %q{0.9.9.10}
+          plugin.version = %q{0.9.9.11}
           plugin.hide_from_menu = true
           plugin.always_allow_access = true
         end
@@ -79,38 +84,29 @@ module Refinery
 
     class << self
 
-      attr_accessor :built_in_locales, :current_locale, :default_locale, :default_frontend_locale, :enabled, :locales
+      attr_accessor :built_in_locales, :current_locale, :default_locale,
+                    :default_frontend_locale, :enabled, :locales
 
       def enabled?
-        # cache this lookup as it gets very expensive.
-        if defined?(@enabled) && !@enabled.nil?
-          @enabled
-        else
-          @enabled = RefinerySetting.find_or_set(:i18n_translation_enabled, true, {
-            :callback_proc_as_string => %q{::Refinery::I18n.setup!},
-            :scoping => 'refinery'
-          })
-        end
+        RefinerySetting.find_or_set(:i18n_translation_enabled, true, {
+          :scoping => 'refinery'
+        })
       end
 
       def current_locale
         unless enabled?
           ::Refinery::I18n.current_locale = ::Refinery::I18n.default_locale
         else
-          (@current_locale ||= RefinerySetting.find_or_set(:i18n_translation_current_locale,
-            ::Refinery::I18n.default_locale, {
-            :scoping => 'refinery',
-            :callback_proc_as_string => %q{::Refinery::I18n.setup!}
-          })).to_sym
+          RefinerySetting.find_or_set(:i18n_translation_current_locale, ::Refinery::I18n.default_locale, {
+            :scoping => 'refinery'
+          }).to_sym
         end
       end
 
       def current_locale=(locale)
-        @current_locale = locale.to_sym
         value = {
           :value => locale.to_sym,
-          :scoping => 'refinery',
-          :callback_proc_as_string => %q{::Refinery::I18n.setup!}
+          :scoping => 'refinery'
         }
         # handles a change in Refinery API
         if RefinerySetting.methods.map(&:to_sym).include?(:set)
@@ -119,40 +115,31 @@ module Refinery
           RefinerySetting[:i18n_translation_current_locale] = value
         end
 
-        ::I18n.locale = @current_locale
+        ::I18n.locale = locale.to_sym
       end
 
       def default_locale
-        (@default_locale ||= RefinerySetting.find_or_set(:i18n_translation_default_locale,
-          :en, {
-          :callback_proc_as_string => %q{::Refinery::I18n.setup!},
+        RefinerySetting.find_or_set(:i18n_translation_default_locale, :en, {
           :scoping => 'refinery'
-        })).to_sym
+        }).to_sym
       end
 
       def default_frontend_locale
-        (@default_frontend_locale ||= RefinerySetting.find_or_set(:i18n_translation_default_frontend_locale,
-          :en, {
-          :scoping => 'refinery',
-          :callback_proc_as_string => %q{::Refinery::I18n.setup!}
-        })).to_sym
+        RefinerySetting.find_or_set(:i18n_translation_default_frontend_locale, :en, {
+          :scoping => 'refinery'
+        }).to_sym
       end
 
       def frontend_locales
-        @frontend_locales ||= RefinerySetting.find_or_set(:i18n_translation_frontend_locales,
-          [self.default_frontend_locale], {
-          :scoping => 'refinery',
-          :callback_proc_as_string => %q{::Refinery::I18n.setup!}
+        RefinerySetting.find_or_set(:i18n_translation_frontend_locales, [self.default_frontend_locale], {
+          :scoping => 'refinery'
         })
       end
 
       def locales
-        @locales ||= RefinerySetting.find_or_set(:i18n_translation_locales, self.built_in_locales,
-          {
-            :scoping => 'refinery',
-            :callback_proc_as_string => %q{::Refinery::I18n.setup!}
-          }
-        )
+        RefinerySetting.find_or_set(:i18n_translation_locales, self.built_in_locales, {
+          :scoping => 'refinery'
+        })
       end
 
       def has_locale?(locale)
@@ -160,15 +147,6 @@ module Refinery
       end
 
       def setup!
-        # Re-initialize variables.
-        @enabled = nil
-        @locales = nil
-        @default_locale = nil
-        @default_frontend_locale = nil
-        @current_locale = nil
-        @frontend_locales = nil
-
-        self.set_default_locale!
         self.ensure_locales_up_to_date!
       end
 
@@ -188,10 +166,6 @@ module Refinery
             RefinerySetting[:i18n_translation_locales] = value
           end
         end
-      end
-
-      def set_default_locale!
-        ::I18n.default_locale = ::Refinery::I18n.default_locale
       end
 
     end
@@ -215,7 +189,8 @@ module Refinery
       :'zh-TW' => 'Traditional Chinese',
       :el => 'Ελληνικά',
       :rs => 'Srpski',
-      :cs => 'Česky'
+      :cs => 'Česky',
+      :sk => 'Slovenský'
     }
   end
 end
