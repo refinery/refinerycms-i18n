@@ -62,6 +62,8 @@ module Refinery
                 Thread.current[:globalize_locale] = ::Refinery::I18n.default_frontend_locale
               end
             end
+
+            Thread.current[:globalize_locale] = ::I18n.locale if Thread.current[:globalize_locale].nil?
           end
           # globalize! should be prepended first so that it runs after find_or_set_locale
           prepend_before_filter :globalize!, :find_or_set_locale
