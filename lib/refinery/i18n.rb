@@ -27,16 +27,16 @@ module Refinery
 
           def find_or_set_locale
             if ::Refinery::I18n.enabled?
+              ::I18n.locale = ::Refinery::I18n.current_locale
+
               if ::Refinery::I18n.has_locale?(locale = params[:locale].try(:to_sym))
-                ::I18n.locale = locale
+                Thread.current[:globalize_locale] = locale
               elsif locale.present? and locale != ::Refinery::I18n.default_frontend_locale
-                params[:locale] = ::I18n.locale = ::Refinery::I18n.default_frontend_locale
+                params[:locale] = Thread.current[:globalize_locale] = ::Refinery::I18n.default_frontend_locale
                 redirect_to(params, :notice => "The locale '#{locale}' is not supported.") and return
               else
-                ::I18n.locale = ::Refinery::I18n.default_frontend_locale
+                Thread.current[:globalize_locale] = ::Refinery::I18n.default_frontend_locale
               end
-
-              Thread.current[:globalize_locale] = ::I18n.locale
             end
           end
 
@@ -86,8 +86,8 @@ module Refinery
 
     class << self
 
-      attr_accessor :built_in_locales, :current_locale, :default_locale,
-                    :default_frontend_locale, :enabled, :locales
+      attr_accessor :built_in_locales, :current_locale, :current_frontend_locale,
+                    :default_locale, :default_frontend_locale, :enabled, :locales
 
       def enabled?
         RefinerySetting.find_or_set(:i18n_translation_enabled, true, {
@@ -124,6 +124,22 @@ module Refinery
         RefinerySetting.find_or_set(:i18n_translation_default_locale, :en, {
           :scoping => 'refinery'
         }).to_sym
+      end
+
+      def current_frontend_locale
+        if Thread.current[:globalize_locale].present?
+          if Thread.current[:globalize_locale].to_s != ::Refinery::I18n.default_frontend_locale.to_s
+            Thread.current[:globalize_locale]
+          else
+            ::Refinery::I18n.default_frontend_locale
+          end
+        elsif ::I18n.locale.present? && ::I18n.locale.to_s != ::Refinery::I18n.default_frontend_locale.to_s
+          ::I18n.locale
+        elsif ::Refinery::I18n.default_frontend_locale.present?
+          ::Refinery::I18n.default_frontend_locale
+        else
+          ::I18n.locale
+        end
       end
 
       def default_frontend_locale
