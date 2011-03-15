@@ -30,12 +30,12 @@ module Refinery
               ::I18n.locale = ::Refinery::I18n.current_locale
 
               if ::Refinery::I18n.has_locale?(locale = params[:locale].try(:to_sym))
-                Thread.current[:globalize_locale] = locale
+                ::I18n.locale = locale
               elsif locale.present? and locale != ::Refinery::I18n.default_frontend_locale
-                params[:locale] = Thread.current[:globalize_locale] = ::Refinery::I18n.default_frontend_locale
+                params[:locale] = ::I18n.locale = ::Refinery::I18n.default_frontend_locale
                 redirect_to(params, :notice => "The locale '#{locale}' is not supported.") and return
               else
-                Thread.current[:globalize_locale] = ::Refinery::I18n.default_frontend_locale
+                ::I18n.locale = ::Refinery::I18n.default_frontend_locale
               end
             end
           end
@@ -127,14 +127,8 @@ module Refinery
       end
 
       def current_frontend_locale
-        if Thread.current[:globalize_locale].present?
-          if Thread.current[:globalize_locale].to_s != ::Refinery::I18n.default_frontend_locale.to_s
-            Thread.current[:globalize_locale]
-          else
-            ::Refinery::I18n.default_frontend_locale
-          end
-        elsif ::I18n.locale.present? && ::I18n.locale.to_s != ::Refinery::I18n.default_frontend_locale.to_s
-          ::I18n.locale
+        if Globalize.locale.present? && Globalize.locale.to_s != ::Refinery::I18n.default_frontend_locale.to_s
+          Globalize.locale
         elsif ::Refinery::I18n.default_frontend_locale.present?
           ::Refinery::I18n.default_frontend_locale
         else
