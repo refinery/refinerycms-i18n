@@ -21,6 +21,10 @@ module Refinery
 
       config.to_prepare do
         ::ApplicationController.class_eval do
+          before_filter lambda {|c|
+            ::SimplesIdeias::I18n.export! if Rails.env.development?
+          }
+
           def default_url_options(options={})
             ::Refinery::I18n.enabled? ? { :locale => ::I18n.locale } : {}
           end

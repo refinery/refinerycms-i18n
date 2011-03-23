@@ -10,11 +10,11 @@ module SimplesIdeias
     MERGER = proc { |key, v1, v2| Hash === v1 && Hash === v2 ? v1.merge(v2, &MERGER) : v2 }
 
     def config_file
-      Rails.root.join("config/i18n-js.yml")
+      Rails.root.join('config', 'i18n-js.yml')
     end
 
     def javascript_file
-      Rails.root.join("public/javascripts/i18n.js")
+      Rails.root.join('public', 'javascripts', 'i18n.js')
     end
 
     # Export translations to JavaScript, considering settings
@@ -39,12 +39,18 @@ module SimplesIdeias
     # Load configuration file for partial exporting and
     # custom output directory
     def config
-      HashWithIndifferentAccess.new YAML.load_file(config_file)
+      yaml = HashWithIndifferentAccess.new
+
+      [config_file].flatten.each do |config|
+        yaml.deep_merge!(YAML.load_file(config))
+      end
+
+      yaml
     end
 
     # Check if configuration file exist
     def config?
-      File.file? config_file
+      [config_file].flatten.any?{|f| File.file?(f.to_s) }
     end
 
     # Copy configuration and JavaScript library files to
