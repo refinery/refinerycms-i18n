@@ -1,15 +1,21 @@
+require "FileUtils" unless defined?(FileUtils)
+
 module SimplesIdeias
   module I18n
     extend self
 
+    require File.expand_path("../i18n-js/railtie", __FILE__) if Rails.version >= "3.0"
+
     # deep_merge by Stefan Rusterholz, see http://www.ruby-forum.com/topic/142809
     MERGER = proc { |key, v1, v2| Hash === v1 && Hash === v2 ? v1.merge(v2, &MERGER) : v2 }
 
-    # Set configuration file path
-    CONFIG_FILE = Rails.root.join("config/i18n-js.yml")
+    def config_file
+      Rails.root.join("config/i18n-js.yml")
+    end
 
-    # Set i18n.js output path
-    JAVASCRIPT_FILE = Rails.root.join("public/javascripts/i18n.js")
+    def javascript_file
+      Rails.root.join("public/javascripts/i18n.js")
+    end
 
     # Export translations to JavaScript, considering settings
     # from configuration file
@@ -33,26 +39,26 @@ module SimplesIdeias
     # Load configuration file for partial exporting and
     # custom output directory
     def config
-      HashWithIndifferentAccess.new YAML.load_file(CONFIG_FILE)
+      HashWithIndifferentAccess.new YAML.load_file(config_file)
     end
 
     # Check if configuration file exist
     def config?
-      File.file? CONFIG_FILE
+      File.file? config_file
     end
 
     # Copy configuration and JavaScript library files to
-    # <tt>SimplesIdeias::I18n::CONFIG_FILE</tt> and <tt>public/i18n.js</tt>.
+    # <tt>config/i18n-js.yml</tt> and <tt>public/javascripts/i18n.js</tt>.
     def setup!
-      FileUtils.cp File.dirname(__FILE__) + "/i18n.js", JAVASCRIPT_FILE
-      FileUtils.cp(File.dirname(__FILE__) + "/i18n-js.yml", CONFIG_FILE) unless config?
+      FileUtils.cp File.dirname(__FILE__) + "/../source/i18n.js", javascript_file
+      FileUtils.cp(File.dirname(__FILE__) + "/../source/i18n-js.yml", config_file) unless config?
     end
 
     # Retrieve an updated JavaScript library from Github.
     def update!
       require "open-uri"
       contents = open("http://github.com/fnando/i18n-js/raw/master/lib/i18n.js").read
-      File.open(JAVASCRIPT_FILE, "w+") {|f| f << contents}
+      File.open(javascript_file, "w+") {|f| f << contents}
     end
 
     # Convert translations to JSON string and save file.
@@ -63,7 +69,7 @@ module SimplesIdeias
       File.open(file, "w+") do |f|
         f << %(var I18n = I18n || {};\n)
         f << %(I18n.translations = );
-        f << sorted_hash(translations).to_json
+        f << translations.to_json
         f << %(;)
       end
     end
@@ -111,22 +117,6 @@ module SimplesIdeias
 
     def deep_merge!(target, hash) # :nodoc:
       target.merge!(hash, &MERGER)
-    end
-
-    # Taken from http://seb.box.re/2010/1/15/deep-hash-ordering-with-ruby-1-8/
-    def sorted_hash(object, deep = false) # :nodoc:
-      if object.is_a?(Hash)
-        res = returning(ActiveSupport::OrderedHash.new) do |map|
-          object.each {|k, v| map[k] = deep ? sorted_hash(v, deep) : v }
-        end
-        return res.class[res.sort {|a, b| a[0].to_s <=> b[0].to_s } ]
-      elsif deep && object.is_a?(Array)
-        array = Array.new
-        object.each_with_index {|v, i| array[i] = sorted_hash(v, deep) }
-        return array
-      else
-        return object
-      end
     end
   end
 end

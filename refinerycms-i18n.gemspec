@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
   s.version           = %q{0.9.9.14}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2011-03-15}
+  s.date              = %q{2011-03-23}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -94,6 +94,9 @@ Gem::Specification.new do |s|
     'lib/gemspec.rb',
     'lib/refinery',
     'lib/refinery/i18n-filter.rb',
+    'lib/refinery/i18n-js',
+    'lib/refinery/i18n-js/railtie.rb',
+    'lib/refinery/i18n-js/version.rb',
     'lib/refinery/i18n-js.rb',
     'lib/refinery/i18n-js.yml',
     'lib/refinery/i18n.js',
