@@ -1,19 +1,20 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
-  s.version           = %q{0.9.9.15}
+  s.version           = %q{0.9.9.16}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2011-03-24}
+  s.date              = %q{2011-03-28}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
   s.authors           = %w(Resolve\ Digital)
   s.require_paths     = %w(lib)
 
-  s.add_dependency    'refinerycms-core', '>= 0.9.9.10'
+  s.add_dependency    'refinerycms-core', '>= 0.9.9.12'
   s.add_dependency    'routing-filter', '>= 0.2.3'
 
   s.files             = [
     'config',
+    'config/i18n-js.yml',
     'config/locales',
     'config/locales/ar.yml',
     'config/locales/bg.yml',
@@ -92,6 +93,8 @@ Gem::Specification.new do |s|
     'i18n-js-readme.rdoc',
     'lib',
     'lib/gemspec.rb',
+    'lib/generators',
+    'lib/generators/refinerycms_i18n_generator.rb',
     'lib/refinery',
     'lib/refinery/i18n-filter.rb',
     'lib/refinery/i18n-js',
