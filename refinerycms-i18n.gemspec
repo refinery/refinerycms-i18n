@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
-  s.version           = %q{0.9.9.16}
+  s.version           = %q{1.0.0}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2011-03-28}
+  s.date              = %q{2011-04-13}
   s.summary           = %q{i18n logic for Refinery CMS.}
-  s.email             = %q{info@refinerycms.com}
-  s.homepage          = %q{http://refinerycms.com}
-  s.authors           = %w(Resolve\ Digital)
+  s.email             = %q{parndt@gmail.com}
+  s.homepage          = %q{http://philiparndt.name}
+  s.authors           = ['Philip Arndt']
   s.require_paths     = %w(lib)
 
   s.add_dependency    'refinerycms-core', '>= 0.9.9.12'

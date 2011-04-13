@@ -20,7 +20,7 @@ module Refinery
       end
 
       config.to_prepare do
-        ::ApplicationController.class_eval do
+        ::ApplicationController.module_eval do
           before_filter lambda {|c|
             ::SimplesIdeias::I18n.export! if Rails.env.development?
           }
@@ -31,7 +31,7 @@ module Refinery
 
           def find_or_set_locale
             if ::Refinery::I18n.enabled?
-              ::I18n.locale = ::Refinery::I18n.current_locale
+              ::I18n.locale = ::Refinery::I18n.current_frontend_locale
 
               if ::Refinery::I18n.has_locale?(locale = params[:locale].try(:to_sym))
                 ::I18n.locale = locale
@@ -41,6 +41,7 @@ module Refinery
               else
                 ::I18n.locale = ::Refinery::I18n.default_frontend_locale
               end
+              Thread.current[:globalize_locale] = ::I18n.locale
             end
           end
 
