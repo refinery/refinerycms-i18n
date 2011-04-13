@@ -164,25 +164,7 @@ module Refinery
       end
 
       def setup!
-        self.ensure_locales_up_to_date!
-      end
-
-      def ensure_locales_up_to_date!
-        # ensure running latest locales (this is awfully brittle).
-        locales = if Refinery.version >= '0.9.9'
-          RefinerySetting.get(:i18n_translation_locales, :scoping => 'refinery')
-        else
-          RefinerySetting.find_by_name_and_scoping('i18n_translation_locales', 'refinery').try(:value)
-        end
-
-        if locales.present? and locales.is_a?(Hash) and locales.keys.exclude?(self.built_in_locales.keys.last)
-          value = {:value => locales.dup.deep_merge(self.built_in_locales), :scoping => 'refinery'}
-          if RefinerySetting.respond_to?(:set)
-            RefinerySetting.set(:i18n_translation_locales, value)
-          else
-            RefinerySetting[:i18n_translation_locales] = value
-          end
-        end
+        # TODO: Remove when enough time has passed (this was called in setting callbacks).
       end
 
     end

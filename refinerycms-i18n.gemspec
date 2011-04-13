@@ -1,11 +1,11 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
-  s.version           = %q{1.0.0}
+  s.version           = %q{1.0.1}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2011-04-13}
+  s.date              = %q{2011-04-14}
   s.summary           = %q{i18n logic for Refinery CMS.}
-  s.email             = %q{parndt@gmail.com}
-  s.homepage          = %q{http://philiparndt.name}
+  s.email             = %q{info@refinerycms.com}
+  s.homepage          = %q{http://refinerycms.com}
   s.authors           = ['Philip Arndt']
   s.require_paths     = %w(lib)
 
