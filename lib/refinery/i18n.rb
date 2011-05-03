@@ -19,6 +19,13 @@ module Refinery
         app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
       end
 
+      initializer "configure fallbacks" do
+        require "i18n/backend/fallbacks"
+        if defined?(::I18n::Backend::Simple) && defined?(::I18n::Backend::Fallbacks)
+          ::I18n::Backend::Simple.send(:include, ::I18n::Backend::Fallbacks)
+        end
+      end
+
       config.to_prepare do
         ::ApplicationController.module_eval do
           before_filter lambda {|c|
@@ -79,9 +86,9 @@ module Refinery
       config.after_initialize do
         ::Refinery::I18n.setup!
 
-        Refinery::Plugin.register do |plugin|
+        ::Refinery::Plugin.register do |plugin|
           plugin.name = "refinery_i18n"
-          plugin.version = %q{0.9.9.11}
+          plugin.version = %q{1.1.0}
           plugin.hide_from_menu = true
           plugin.always_allow_access = true
         end
