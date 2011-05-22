@@ -102,7 +102,7 @@ module Refinery
                     :default_locale, :default_frontend_locale, :enabled, :locales
 
       def enabled?
-        RefinerySetting.find_or_set(:i18n_translation_enabled, true, {
+        ::Refinery::RefinerySetting.find_or_set(:i18n_translation_enabled, true, {
           :scoping => 'refinery'
         })
       end
@@ -111,7 +111,7 @@ module Refinery
         unless enabled?
           ::Refinery::I18n.current_locale = ::Refinery::I18n.default_locale
         else
-          RefinerySetting.find_or_set(:i18n_translation_current_locale, ::Refinery::I18n.default_locale, {
+          ::Refinery::RefinerySetting.find_or_set(:i18n_translation_current_locale, ::Refinery::I18n.default_locale, {
             :scoping => 'refinery'
           }).to_sym
         end
@@ -123,17 +123,17 @@ module Refinery
           :scoping => 'refinery'
         }
         # handles a change in Refinery API
-        if RefinerySetting.methods.map(&:to_sym).include?(:set)
-          RefinerySetting.set(:i18n_translation_current_locale, value)
+        if ::Refinery::RefinerySetting.methods.map(&:to_sym).include?(:set)
+          ::Refinery::RefinerySetting.set(:i18n_translation_current_locale, value)
         else
-          RefinerySetting[:i18n_translation_current_locale] = value
+          ::Refinery::RefinerySetting[:i18n_translation_current_locale] = value
         end
 
         ::I18n.locale = locale.to_sym
       end
 
       def default_locale
-        RefinerySetting.find_or_set(:i18n_translation_default_locale, :en, {
+        ::Refinery::RefinerySetting.find_or_set(:i18n_translation_default_locale, :en, {
           :scoping => 'refinery'
         }).to_sym
       end
@@ -149,19 +149,19 @@ module Refinery
       end
 
       def default_frontend_locale
-        RefinerySetting.find_or_set(:i18n_translation_default_frontend_locale, :en, {
+        ::Refinery::RefinerySetting.find_or_set(:i18n_translation_default_frontend_locale, :en, {
           :scoping => 'refinery'
         }).to_sym
       end
 
       def frontend_locales
-        RefinerySetting.find_or_set(:i18n_translation_frontend_locales, [self.default_frontend_locale], {
+        ::Refinery::RefinerySetting.find_or_set(:i18n_translation_frontend_locales, [self.default_frontend_locale], {
           :scoping => 'refinery'
         })
       end
 
       def locales
-        RefinerySetting.find_or_set(:i18n_translation_locales, self.built_in_locales, {
+        ::Refinery::RefinerySetting.find_or_set(:i18n_translation_locales, self.built_in_locales, {
           :scoping => 'refinery'
         })
       end
