@@ -385,7 +385,7 @@ Gem::Specification.new do |s|
     'lib/tasks/translate.rake',
     'lib/refinerycms-i18n.rb',
     'lib/gemspec.rb'
-  ]
+  ].sort
   s.test_files        = [
     'test/test_helper.rb',
     'test/i18n_js_test.rb'

@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
 
   s.files             = [
     '#{files.join("',\n    '")}'
-  ]
+  ].sort
   #{"s.test_files        = [
     '#{Dir.glob("test/**/*.rb").join("',\n    '")}'
   ]" if File.directory?("test")}
