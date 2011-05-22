@@ -122,12 +122,7 @@ module Refinery
           :value => locale.to_sym,
           :scoping => 'refinery'
         }
-        # handles a change in Refinery API
-        if ::Refinery::RefinerySetting.methods.map(&:to_sym).include?(:set)
-          ::Refinery::RefinerySetting.set(:i18n_translation_current_locale, value)
-        else
-          ::Refinery::RefinerySetting[:i18n_translation_current_locale] = value
-        end
+        ::Refinery::RefinerySetting.set(:i18n_translation_current_locale, value)
 
         ::I18n.locale = locale.to_sym
       end
