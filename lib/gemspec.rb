@@ -21,8 +21,8 @@ Gem::Specification.new do |s|
   s.add_dependency    'routing-filter', '>= 0.2.3'
 
   s.files             = [
-    '#{files.join("',\n    '")}'
-  ].sort
+    '#{files.sort.join("',\n    '")}'
+  ]
   #{"s.test_files        = [
     '#{Dir.glob("test/**/*.rb").join("',\n    '")}'
   ]" if File.directory?("test")}

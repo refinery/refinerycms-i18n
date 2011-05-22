@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.add_dependency    'routing-filter', '>= 0.2.3'
 
   s.files             = [
+    'Rakefile',
     'config',
     'config/i18n-js.yml',
     'config/locales',
@@ -98,10 +99,10 @@ Gem::Specification.new do |s|
     'lib/refinery',
     'lib/refinery/i18n-filter.rb',
     'lib/refinery/i18n-js',
-    'lib/refinery/i18n-js/railtie.rb',
-    'lib/refinery/i18n-js/version.rb',
     'lib/refinery/i18n-js.rb',
     'lib/refinery/i18n-js.yml',
+    'lib/refinery/i18n-js/railtie.rb',
+    'lib/refinery/i18n-js/version.rb',
     'lib/refinery/i18n.js',
     'lib/refinery/i18n.rb',
     'lib/refinery/translate.rb',
@@ -368,7 +369,6 @@ Gem::Specification.new do |s|
     'public/images/refinery/icons/flags/zh-TW.png',
     'public/images/refinery/icons/flags/zm.png',
     'public/images/refinery/icons/flags/zw.png',
-    'Rakefile',
     'test',
     'test/i18n-test.html',
     'test/i18n-test.js',
@@ -385,7 +385,7 @@ Gem::Specification.new do |s|
     'test/resources/simple_scope.yml',
     'test/test_helper.rb',
     'translate-readme.md'
-  ].sort
+  ]
   s.test_files        = [
     'test/i18n_js_test.rb',
     'test/test_helper.rb'
