@@ -101,6 +101,13 @@ module Refinery
       attr_accessor :built_in_locales, :current_locale, :current_frontend_locale,
                     :default_locale, :default_frontend_locale, :enabled, :locales
 
+      def enabled=(value)
+        @enabled = Refinery::Setting.set(:i18n_translation_enabled, {
+          :value => value,
+          :scoping => 'refinery'
+        })
+      end
+
       def enabled?
         ::Refinery::Setting.find_or_set(:i18n_translation_enabled, true, {
           :scoping => 'refinery'
@@ -118,11 +125,10 @@ module Refinery
       end
 
       def current_locale=(locale)
-        value = {
+        ::Refinery::Setting.set(:i18n_translation_current_locale, {
           :value => locale.to_sym,
           :scoping => 'refinery'
-        }
-        ::Refinery::Setting.set(:i18n_translation_current_locale, value)
+        })
 
         ::I18n.locale = locale.to_sym
       end
