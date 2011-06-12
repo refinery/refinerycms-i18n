@@ -1,9 +1,5 @@
 # Encoding: UTF-8 <-- required, please leave this in.
-if defined?(Refinery) && Refinery.version > '0.9.9'
-  require 'refinerycms-core'
-else
-  require 'refinery'
-end
+require 'refinerycms-core'
 require 'routing-filter'
 
 module Refinery
@@ -13,10 +9,6 @@ module Refinery
         require File.expand_path('../i18n-filter', __FILE__)
         require File.expand_path('../i18n-js', __FILE__)
         require File.expand_path('../translate', __FILE__)
-      end
-
-      initializer "serve static assets" do |app|
-        app.middleware.insert_after ::ActionDispatch::Static, ::ActionDispatch::Static, "#{root}/public"
       end
 
       initializer "configure fallbacks" do
