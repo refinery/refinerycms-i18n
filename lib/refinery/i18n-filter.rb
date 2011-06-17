@@ -24,6 +24,7 @@ module RoutingFilter
       locale = params.delete(:locale) || ::I18n.locale
 
       yield.tap do |result|
+        result = result.is_a?(Array) ? result.first : result
         if ::Refinery::I18n.enabled? and
            locale != ::Refinery::I18n.default_frontend_locale and
            result !~ %r{^/(refinery|wymiframe)}
