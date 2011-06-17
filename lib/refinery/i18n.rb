@@ -52,7 +52,7 @@ module Refinery
           def find_or_set_locale
             if (params[:set_locale] and ::Refinery::I18n.locales.keys.map(&:to_sym).include?(params[:set_locale].to_sym))
               ::Refinery::I18n.current_locale = params[:set_locale].to_sym
-              redirect_back_or_default(refinery_admin_root_path) and return
+              redirect_back_or_default(main_app.refinery_admin_root_path) and return
             else
               ::I18n.locale = ::Refinery::I18n.current_locale
             end
