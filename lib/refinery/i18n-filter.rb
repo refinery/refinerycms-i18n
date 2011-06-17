@@ -16,7 +16,6 @@ module RoutingFilter
 
       yield.tap do |params|
         params[:locale] = ::I18n.locale if ::Refinery::I18n.enabled?
-        params
       end
     end
 
@@ -30,8 +29,6 @@ module RoutingFilter
            result !~ %r{^/(refinery|wymiframe)}
           result.sub!(%r(^(http.?://[^/]*)?(.*))) { "#{$1}/#{locale}#{$2}" }
         end
-
-        result
       end
     end
 
