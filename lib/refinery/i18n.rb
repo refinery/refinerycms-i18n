@@ -190,7 +190,8 @@ module Refinery
       :rs => 'Srpski',
       :cs => 'Česky',
       :sk => 'Slovenský',
-      :jp => '日本語'
+      :jp => '日本語',
+      :bg => 'Български'
     }
   end
 end
