@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
   s.version           = %q{2.0.0}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2011-08-12}
+  s.date              = %q{2011-08-22}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -80,7 +80,6 @@ Gem::Specification.new do |s|
     'app/assets/images/refinery/icons/flags/do.png',
     'app/assets/images/refinery/icons/flags/dz.png',
     'app/assets/images/refinery/icons/flags/ec.png',
-    'app/assets/images/refinery/icons/flags/ee.png',
     'app/assets/images/refinery/icons/flags/eg.png',
     'app/assets/images/refinery/icons/flags/eh.png',
     'app/assets/images/refinery/icons/flags/el.png',
@@ -344,8 +343,6 @@ Gem::Specification.new do |s|
     'config/locales/vi.yml',
     'config/locales/zh-CN.yml',
     'config/locales/zh-TW.yml',
-    'features',
-    'features/dashboard.feature',
     'i18n-js-readme.rdoc',
     'lib',
     'lib/gemspec.rb',
@@ -370,6 +367,9 @@ Gem::Specification.new do |s|
     'lib/translate/keys.rb',
     'lib/translate/log.rb',
     'lib/translate/storage.rb',
+    'spec',
+    'spec/requests',
+    'spec/requests/dashboard_locale_picker_spec.rb',
     'test',
     'test/i18n-test.html',
     'test/i18n-test.js',
