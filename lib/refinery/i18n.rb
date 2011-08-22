@@ -76,8 +76,6 @@ module Refinery
       end
 
       config.after_initialize do
-        ::Refinery::I18n.setup!
-
         ::Refinery::Plugin.register do |plugin|
           plugin.name = "refinery_i18n"
           plugin.version = %q{1.1.0}
@@ -161,10 +159,6 @@ module Refinery
 
       def has_locale?(locale)
         locales.has_key?(locale.try(:to_sym))
-      end
-
-      def setup!
-        # TODO: Remove when enough time has passed (this was called in setting callbacks).
       end
 
     end
