@@ -56,8 +56,8 @@ module SimplesIdeias
     # Copy configuration and JavaScript library files to
     # <tt>config/i18n-js.yml</tt> and <tt>public/javascripts/i18n.js</tt>.
     def setup!
-      FileUtils.cp File.dirname(__FILE__) + "/../source/i18n.js", javascript_file
-      FileUtils.cp(File.dirname(__FILE__) + "/../source/i18n-js.yml", config_file) unless config?
+      FileUtils.cp File.dirname(__FILE__) + "/../refinery/i18n.js", javascript_file
+      FileUtils.cp(File.dirname(__FILE__) + "/../refinery/i18n-js.yml", config_file) unless config?
     end
 
     # Retrieve an updated JavaScript library from Github.
