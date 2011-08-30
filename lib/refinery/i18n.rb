@@ -43,6 +43,13 @@ module Refinery
               Thread.current[:globalize_locale] = ::I18n.locale
             end
           end
+          
+          # with i18n, there can be localized home pages, like /en, etc.
+          def home_page?
+            root_paths = ::Refinery::I18n.frontend_locales.map { |l| "/#{l}" }
+            root_paths << root_path
+            root_paths.include?(request.path)
+          end
 
           prepend_before_filter :find_or_set_locale
           protected :default_url_options, :find_or_set_locale
