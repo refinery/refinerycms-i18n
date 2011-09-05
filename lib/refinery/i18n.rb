@@ -184,7 +184,7 @@ module Refinery
       :rs => 'Srpski',
       :cs => 'Česky',
       :sk => 'Slovenský',
-      :jp => '日本語',
+      :ja => '日本語',
       :bg => 'Български'
     }
   end
