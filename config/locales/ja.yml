@@ -3,8 +3,11 @@
 # AR error messages are basically taken from Ruby-GetText-Package. Thanks to Masao Mutoh.
 # contributors:
 #  - Tsutomu Kuroda (t-kuroda@oiax.jp)
+#  
+#  Migration from non-standard jp to standard ja by Rei Kagetsuki of Genshin Souzou K.K.
+#  (zero@genshin.org)
 
-jp:
+ja:
   date:
     formats:
       default: "%Y/%m/%d"
