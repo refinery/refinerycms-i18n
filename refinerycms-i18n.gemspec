@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
   s.version           = %q{2.0.0}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2011-08-22}
+  s.date              = %q{2011-09-05}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -128,9 +128,9 @@ Gem::Specification.new do |s|
     'app/assets/images/refinery/icons/flags/ir.png',
     'app/assets/images/refinery/icons/flags/is.png',
     'app/assets/images/refinery/icons/flags/it.png',
+    'app/assets/images/refinery/icons/flags/ja.png',
     'app/assets/images/refinery/icons/flags/jm.png',
     'app/assets/images/refinery/icons/flags/jo.png',
-    'app/assets/images/refinery/icons/flags/jp.png',
     'app/assets/images/refinery/icons/flags/ke.png',
     'app/assets/images/refinery/icons/flags/kg.png',
     'app/assets/images/refinery/icons/flags/kh.png',
@@ -315,7 +315,7 @@ Gem::Specification.new do |s|
     'config/locales/id.yml',
     'config/locales/is.yml',
     'config/locales/it.yml',
-    'config/locales/jp.yml',
+    'config/locales/ja.yml',
     'config/locales/ko.yml',
     'config/locales/lo.yml',
     'config/locales/lt.yml',
