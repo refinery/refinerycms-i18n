@@ -1,10 +1,6 @@
-require 'refinery/generators'
-
-module ::Refinery
-  class I18nGenerator < ::Refinery::Generators::EngineInstaller
-
+module Refinery
+  class I18nGenerator < Rails::Generators::Base
     source_root File.expand_path('../../../', __FILE__)
-    engine_name "i18n"
 
     def generate
       copy_file 'config/i18n-js.yml', Rails.root.join('config', 'i18n-js.yml')
