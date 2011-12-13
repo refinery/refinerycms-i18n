@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
   s.version           = %q{2.0.0}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2011-09-05}
+  s.date              = %q{2011-12-13}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -349,6 +349,7 @@ Gem::Specification.new do |s|
     'lib/generators',
     'lib/generators/i18n_generator.rb',
     'lib/refinery',
+    'lib/refinery/i18n',
     'lib/refinery/i18n-filter.rb',
     'lib/refinery/i18n-js',
     'lib/refinery/i18n-js.rb',
@@ -357,6 +358,7 @@ Gem::Specification.new do |s|
     'lib/refinery/i18n-js/version.rb',
     'lib/refinery/i18n.js',
     'lib/refinery/i18n.rb',
+    'lib/refinery/i18n/engine.rb',
     'lib/refinery/translate.rb',
     'lib/refinerycms-i18n.rb',
     'lib/tasks',
