@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
   s.version           = %q{2.0.0}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2011-12-13}
+  s.date              = %q{2011-12-19}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -269,7 +269,6 @@ Gem::Specification.new do |s|
     'app/assets/images/refinery/icons/flags/zm.png',
     'app/assets/images/refinery/icons/flags/zw.png',
     'config',
-    'config/i18n-js.yml',
     'config/locales',
     'config/locales/ar.yml',
     'config/locales/bg.yml',
@@ -343,11 +342,17 @@ Gem::Specification.new do |s|
     'config/locales/vi.yml',
     'config/locales/zh-CN.yml',
     'config/locales/zh-TW.yml',
-    'i18n-js-readme.rdoc',
     'lib',
     'lib/gemspec.rb',
     'lib/generators',
-    'lib/generators/i18n_generator.rb',
+    'lib/generators/refinery',
+    'lib/generators/refinery/i18n_generator.rb',
+    'lib/generators/refinery/templates',
+    'lib/generators/refinery/templates/config',
+    'lib/generators/refinery/templates/config/i18n-js-readme.rdoc',
+    'lib/generators/refinery/templates/config/i18n-js.yml',
+    'lib/generators/refinery/templates/config/initializers',
+    'lib/generators/refinery/templates/config/initializers/refinery_i18n.rb.erb',
     'lib/refinery',
     'lib/refinery/i18n',
     'lib/refinery/i18n-filter.rb',
@@ -358,6 +363,7 @@ Gem::Specification.new do |s|
     'lib/refinery/i18n-js/version.rb',
     'lib/refinery/i18n.js',
     'lib/refinery/i18n.rb',
+    'lib/refinery/i18n/configuration.rb',
     'lib/refinery/i18n/engine.rb',
     'lib/refinery/translate.rb',
     'lib/refinerycms-i18n.rb',
