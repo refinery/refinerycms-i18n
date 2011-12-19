@@ -4,8 +4,6 @@ require 'routing-filter'
 
 module Refinery
   module I18n
-    include ActiveSupport::Configurable
-
     class << self
       attr_accessor :built_in_locales
 
@@ -55,17 +53,8 @@ module Refinery
       end
     end
 
-    config_accessor :current_locale, :default_locale, :default_frontend_locale,
-                    :enabled, :frontend_locales, :locales
-
-    self.enabled = true
-    self.default_locale = :en
-    self.default_frontend_locale = self.default_locale
-    self.current_locale = self.default_locale
-    self.frontend_locales = [self.default_frontend_locale]
-    self.locales = self.built_in_locales
-
     require 'refinery/i18n/engine' if defined?(Rails)
+    require 'refinery/i18n/configuration'
   end
 end
 
