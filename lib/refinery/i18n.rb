@@ -3,6 +3,8 @@ require 'refinerycms-core'
 require 'routing-filter'
 
 module Refinery
+  autoload :I18nGenerator, 'generators/refinery/i18n_generator'
+
   module I18n
     class << self
       attr_accessor :built_in_locales
@@ -57,4 +59,3 @@ module Refinery
     require 'refinery/i18n/configuration'
   end
 end
-
