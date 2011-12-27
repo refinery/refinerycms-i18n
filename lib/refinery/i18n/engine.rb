@@ -3,7 +3,6 @@ module Refinery
     class Engine < Rails::Engine
       config.before_initialize do
         require File.expand_path('../../i18n-filter', __FILE__)
-        require File.expand_path('../../i18n-js', __FILE__)
         require File.expand_path('../../translate', __FILE__)
       end
 
@@ -16,10 +15,6 @@ module Refinery
 
       config.to_prepare do
         ::ApplicationController.module_eval do
-          before_filter lambda {|c|
-            ::SimplesIdeias::I18n.export! if Rails.env.development?
-          }
-
           def default_url_options(options={})
             ::Refinery::I18n.enabled? ? { :locale => ::I18n.locale } : {}
           end

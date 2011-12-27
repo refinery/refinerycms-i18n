@@ -19,13 +19,11 @@ Gem::Specification.new do |s|
 
   s.add_dependency    'refinerycms-core', '~> 2.0.0'
   s.add_dependency    'routing-filter',   '>= 0.2.3'
+  s.add_dependency    'i18n-js',          '~> 2.1.2'
 
   s.files             = [
     '#{files.sort.join("',\n    '")}'
   ]
-  #{"s.test_files        = [
-    '#{Dir.glob("test/**/*.rb").join("',\n    '")}'
-  ]" if File.directory?("test")}
 end
 EOF
 

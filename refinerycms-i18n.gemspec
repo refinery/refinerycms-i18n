@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
   s.version           = %q{2.0.0}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2011-12-19}
+  s.date              = %q{2011-12-27}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -11,9 +11,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency    'refinerycms-core', '~> 2.0.0'
   s.add_dependency    'routing-filter',   '>= 0.2.3'
+  s.add_dependency    'i18n-js',          '~> 2.1.2'
 
   s.files             = [
-    'Rakefile',
     'app',
     'app/assets',
     'app/assets/images',
@@ -349,26 +349,17 @@ Gem::Specification.new do |s|
     'lib/generators/refinery/i18n_generator.rb',
     'lib/generators/refinery/templates',
     'lib/generators/refinery/templates/config',
-    'lib/generators/refinery/templates/config/i18n-js-readme.rdoc',
-    'lib/generators/refinery/templates/config/i18n-js.yml',
     'lib/generators/refinery/templates/config/initializers',
     'lib/generators/refinery/templates/config/initializers/refinery_i18n.rb.erb',
     'lib/refinery',
     'lib/refinery/i18n',
     'lib/refinery/i18n-filter.rb',
-    'lib/refinery/i18n-js',
-    'lib/refinery/i18n-js.rb',
-    'lib/refinery/i18n-js.yml',
-    'lib/refinery/i18n-js/railtie.rb',
-    'lib/refinery/i18n-js/version.rb',
-    'lib/refinery/i18n.js',
     'lib/refinery/i18n.rb',
     'lib/refinery/i18n/configuration.rb',
     'lib/refinery/i18n/engine.rb',
     'lib/refinery/translate.rb',
     'lib/refinerycms-i18n.rb',
     'lib/tasks',
-    'lib/tasks/i18n-js_tasks.rake',
     'lib/tasks/translate.rake',
     'lib/translate',
     'lib/translate/file.rb',
@@ -378,25 +369,6 @@ Gem::Specification.new do |s|
     'spec',
     'spec/requests',
     'spec/requests/dashboard_locale_picker_spec.rb',
-    'test',
-    'test/i18n-test.html',
-    'test/i18n-test.js',
-    'test/i18n_js_test.rb',
-    'test/jsunittest',
-    'test/jsunittest/jsunittest.js',
-    'test/jsunittest/unittest.css',
-    'test/resources',
-    'test/resources/custom_path.yml',
-    'test/resources/default.yml',
-    'test/resources/locales.yml',
-    'test/resources/multiple_files.yml',
-    'test/resources/no_scope.yml',
-    'test/resources/simple_scope.yml',
-    'test/test_helper.rb',
     'translate-readme.md'
-  ]
-  s.test_files        = [
-    'test/i18n_js_test.rb',
-    'test/test_helper.rb'
   ]
 end
