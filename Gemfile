@@ -15,7 +15,7 @@ group :development, :test do
 
   gem 'sqlite3', :platform => [:ruby, :mswin, :mingw]
 
-  gem 'jdbc-sqlite3', :platform => :jruby
+  gem 'activerecord-jdbcsqlite3-adapter', :platform => :jruby
 
   platforms :mswin, :mingw do
     gem 'win32console'
