@@ -2,7 +2,7 @@ Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
   s.version           = %q{2.0.0}
   s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2012-01-31}
+  s.date              = %q{2012-02-06}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
@@ -14,6 +14,8 @@ Gem::Specification.new do |s|
   s.add_dependency    'i18n-js',          '~> 2.1.2'
 
   s.files             = [
+    'Gemfile',
+    'Rakefile',
     'app',
     'app/assets',
     'app/assets/images',
@@ -370,6 +372,9 @@ Gem::Specification.new do |s|
     'spec',
     'spec/requests',
     'spec/requests/dashboard_locale_picker_spec.rb',
+    'spec/spec_helper.rb',
+    'tasks',
+    'tasks/rspec.rake',
     'translate-readme.md'
   ]
 end
