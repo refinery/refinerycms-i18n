@@ -13,18 +13,9 @@ end
 group :development, :test do
   require 'rbconfig'
 
-  platforms :jruby do
-    gem 'activerecord-jdbcsqlite3-adapter'
-    gem 'activerecord-jdbcmysql-adapter'
-    gem 'activerecord-jdbcpostgresql-adapter'
-    gem 'jruby-openssl'
-  end
+  gem 'sqlite3', :platform => [:ruby, :mswin, :mingw]
 
-  unless defined?(JRUBY_VERSION)
-    gem 'sqlite3'
-    gem 'mysql2'
-    gem 'pg'
-  end
+  gem 'jdbc-sqlite3', :platform => :jruby
 
   platforms :mswin, :mingw do
     gem 'win32console'
