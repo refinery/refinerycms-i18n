@@ -4,6 +4,7 @@ script: "bundle exec rspec ./spec"
 notifications:
   email:
     - parndt@gmail.com
+    - ugis.ozolss@gmail.com
 env:
   - DB=postgresql
   - DB=mysql
