@@ -81,3 +81,6 @@ your_*.*
 db/schema.rb
 
 # END REFINERY CMS DEVELOPMENT =================================================
+
+Gemfile.lock
+spec/dummy

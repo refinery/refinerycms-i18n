@@ -5,7 +5,7 @@ describe "dashboard locale picker" do
   login_refinery_user
 
   it "changes language used in backend" do
-    visit refinery_admin_dashboard_path
+    visit refinery.admin_dashboard_path
 
     page.should have_content("Switch to your website")
 
