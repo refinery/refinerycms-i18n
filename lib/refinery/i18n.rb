@@ -56,7 +56,7 @@ module Refinery
       end
     end
 
-    require 'refinery/i18n/engine' if defined?(Rails)
+    require 'refinery/i18n/engine'
     require 'refinery/i18n/configuration'
   end
 end
