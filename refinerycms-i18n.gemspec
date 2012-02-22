@@ -11,7 +11,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency    'refinerycms-core', '~> 2.0.0'
   s.add_dependency    'routing-filter',   '>= 0.2.3'
-  s.add_dependency    'i18n-js',          '~> 2.1.2'
 
   s.files             = [
     'Gemfile',
