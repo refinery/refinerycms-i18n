@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
   s.version           = %q{2.0.0}
-  s.description       = %q{i18n logic extracted from RefineryCMS, for Refinery CMS.}
-  s.date              = %q{2012-02-06}
+  s.description       = %q{i18n logic extracted from Refinery CMS, for Refinery CMS.}
+  s.date              = %q{2012-02-29}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{http://refinerycms.com}
