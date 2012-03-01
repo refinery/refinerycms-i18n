@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
-  s.version           = %q{2.0.0}
+  s.version           = %q{2.1.0.dev}
   s.description       = %q{i18n logic extracted from Refinery CMS, for Refinery CMS.}
   s.date              = %q{2012-02-29}
   s.summary           = %q{i18n logic for Refinery CMS.}
@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors           = ['Philip Arndt']
   s.require_paths     = %w(lib)
 
-  s.add_dependency    'refinerycms-core', '~> 2.0.0'
+  s.add_dependency    'refinerycms-core', '~> 2.0'
   s.add_dependency    'routing-filter',   '>= 0.2.3'
 
   s.files             = [
