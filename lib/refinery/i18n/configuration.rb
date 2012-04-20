@@ -3,7 +3,8 @@ module Refinery
     include ActiveSupport::Configurable
 
     config_accessor :current_locale, :default_locale, :default_frontend_locale,
-                    :enabled, :fallbacks_enabled, :frontend_locales, :locales
+                    :enabled, :fallbacks_enabled, :frontend_locales, :locales,
+                    :url_filter_enabled
 
     self.enabled = true
     self.default_locale = :en
@@ -12,5 +13,6 @@ module Refinery
     self.fallbacks_enabled = true
     self.frontend_locales = [self.default_frontend_locale]
     self.locales = self.built_in_locales
+    self.url_filter_enabled = true
   end
 end
