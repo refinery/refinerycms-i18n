@@ -50,6 +50,10 @@ module Refinery
         config.enabled
       end
 
+      def url_filter_enabled?
+        enabled? && config.url_filter_enabled
+      end
+
       def has_locale?(locale)
         config.locales.has_key?(locale.try(:to_sym))
       end
