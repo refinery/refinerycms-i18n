@@ -18,7 +18,7 @@
       :formats => {
         :default => "%d. %m. %Y",
         :short   => "%d %b",
-        :long    => "%d. %B %Y",
+        :long    => "%d. %B %Y"
       },
       :day_names         => %w{Neděle Pondělí Úterý Středa Čtvrtek Pátek Sobota},
       :abbr_day_names    => %w{Ne Po Út St Čt Pá So},
@@ -51,7 +51,7 @@
           :precision => 2,
           :format    => '%n %u',
           :separator => ",",
-          :delimiter => " ",
+          :delimiter => " "
         }
       },
       :human => {
@@ -66,7 +66,7 @@
            :kb   => "KB",
            :mb   => "MB",
            :gb   => "GB",
-           :tb   => "TB",
+           :tb   => "TB"
          }
        }
       },
