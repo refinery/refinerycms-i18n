@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gemspec
 
-git 'git://github.com/resolve/refinerycms.git', :branch => '2-0-stable' do
+git 'git://github.com/resolve/refinerycms.git' do
   gem 'refinerycms'
 
   group :development, :test do
