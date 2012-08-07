@@ -1,6 +1,7 @@
 # Encoding: UTF-8 <-- required, please leave this in.
 require 'refinerycms-core'
 require 'routing-filter'
+require 'rails-i18n'
 
 module Refinery
   autoload :I18nGenerator, 'generators/refinery/i18n_generator'

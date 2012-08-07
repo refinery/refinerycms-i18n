@@ -14,4 +14,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency    'refinerycms-core', '~> 2.0'
   s.add_dependency    'routing-filter',   '~> 0.3.0'
+  s.add_dependency    'rails-i18n',       '~> 0.6.5'
 end
