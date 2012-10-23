@@ -24,9 +24,6 @@ group :development, :test do
   end
 
   platforms :ruby do
-    gem 'spork', '0.9.0.rc9'
-    gem 'guard-spork'
-
     unless ENV['TRAVIS']
       if RbConfig::CONFIG['target_os'] =~ /darwin/i
         gem 'rb-fsevent', '>= 0.3.9'
