@@ -15,7 +15,8 @@ module Refinery
           :en => 'English',
           :fr => 'Français',
           :nl => 'Nederlands',
-          :'pt-BR' => 'Português',
+          :pt => 'Português',
+          :'pt-BR' => 'Português brasileiro',
           :da => 'Dansk',
           :nb => 'Norsk Bokmål',
           :sl => 'Slovenian',
@@ -33,7 +34,8 @@ module Refinery
           :cs => 'Česky',
           :sk => 'Slovenský',
           :ja => '日本語',
-          :bg => 'Български'
+          :bg => 'Български',
+          :hu => 'Hungarian'
         }
       end
 
