@@ -26,7 +26,7 @@ module RoutingFilter
         result = result.is_a?(Array) ? result.first : result
         if ::Refinery::I18n.url_filter_enabled? and
            locale != ::Refinery::I18n.default_frontend_locale and
-           result !~ %r{^/(refinery|wymiframe)}
+           result !~ %r{^/(#{Refinery::Core.backend_route}|wymiframe)}
           result.sub!(%r(^(http.?://[^/]*)?(.*))) { "#{$1}/#{locale}#{$2}" }
         end
       end
