@@ -68,12 +68,12 @@ module Refinery
         end
       end
 
-      config.after_initialize do
+      initializer "register refinery_i18n plugin" do
         ::Refinery::Plugin.register do |plugin|
           plugin.name = "refinery_i18n"
-          plugin.version = %q{2.0.0}
           plugin.hide_from_menu = true
           plugin.always_allow_access = true
+          plugin.pathname = root
         end
       end
 
