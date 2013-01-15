@@ -2,7 +2,7 @@
 require "spec_helper"
 
 describe "dashboard locale picker" do
-  login_refinery_user
+  refinery_login_with :refinery_user
 
   it "changes language used in backend" do
     visit refinery.admin_dashboard_path
