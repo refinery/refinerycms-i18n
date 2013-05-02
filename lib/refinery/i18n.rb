@@ -35,7 +35,8 @@ module Refinery
           :sk => 'Slovenský',
           :ja => '日本語',
           :bg => 'Български',
-          :hu => 'Hungarian'
+          :hu => 'Hungarian',
+          :uk => 'Українська'
         }
       end
 
