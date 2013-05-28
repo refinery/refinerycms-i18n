@@ -61,6 +61,14 @@ module Refinery
       def has_locale?(locale)
         config.locales.has_key?(locale.try(:to_sym))
       end
+      
+      def domain_name_enabled?
+        config.domain_name_enabled
+      end
+      
+      def domain_name_for_locale(locale)
+        config.domains_locales.invert[locale] || false
+      end
     end
 
     require 'refinery/i18n/engine'
