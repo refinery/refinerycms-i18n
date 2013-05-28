@@ -50,12 +50,8 @@ module Refinery
         end
       end
 
-      def enabled?
-        config.enabled
-      end
-
       def url_filter_enabled?
-        enabled? && config.url_filter_enabled
+        config.url_filter_enabled
       end
 
       def has_locale?(locale)

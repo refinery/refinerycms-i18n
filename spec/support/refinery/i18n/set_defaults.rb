@@ -3,8 +3,6 @@
 RSpec.configure do |config|
   config.before(:all) do
     Refinery::I18n.configure do |config|
-      config.enabled = true
-
       config.default_locale = :en
 
       config.current_locale = :en

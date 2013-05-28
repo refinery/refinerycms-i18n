@@ -18,23 +18,21 @@ module Refinery
       config.to_prepare do
         ::ApplicationController.module_eval do
           def default_url_options(options={})
-            ::Refinery::I18n.enabled? ? { :locale => ::I18n.locale } : {}
+            { :locale => ::I18n.locale }
           end
 
           def find_or_set_locale
-            if ::Refinery::I18n.enabled?
-              ::I18n.locale = ::Refinery::I18n.current_frontend_locale
+            ::I18n.locale = ::Refinery::I18n.current_frontend_locale
 
-              if ::Refinery::I18n.has_locale?(locale = params[:locale].try(:to_sym))
-                ::I18n.locale = locale
-              elsif locale.present? and locale != ::Refinery::I18n.default_frontend_locale
-                params[:locale] = ::I18n.locale = ::Refinery::I18n.default_frontend_locale
-                redirect_to(params, :notice => "The locale '#{locale}' is not supported.") and return
-              else
-                ::I18n.locale = ::Refinery::I18n.default_frontend_locale
-              end
-              Thread.current[:globalize_locale] = ::I18n.locale
+            if ::Refinery::I18n.has_locale?(locale = params[:locale].try(:to_sym))
+              ::I18n.locale = locale
+            elsif locale.present? and locale != ::Refinery::I18n.default_frontend_locale
+              params[:locale] = ::I18n.locale = ::Refinery::I18n.default_frontend_locale
+              redirect_to(params, :notice => "The locale '#{locale}' is not supported.") and return
+            else
+              ::I18n.locale = ::Refinery::I18n.default_frontend_locale
             end
+            Thread.current[:globalize_locale] = ::I18n.locale
           end
 
           prepend_before_filter :find_or_set_locale

@@ -15,7 +15,7 @@ module RoutingFilter
       end
 
       yield.tap do |params|
-        params[:locale] = ::I18n.locale if ::Refinery::I18n.enabled?
+        params[:locale] = ::I18n.locale
       end
     end
 
