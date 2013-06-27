@@ -4,7 +4,7 @@ require "spec_helper"
 describe "dashboard locale picker" do
   refinery_login_with :refinery_user
 
-  it "changes language used in backend" do
+  it "changes language used in backend", :js => true do
     visit refinery.admin_dashboard_path
 
     page.should have_content("Switch to your website")
