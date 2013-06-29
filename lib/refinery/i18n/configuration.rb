@@ -13,5 +13,11 @@ module Refinery
     self.frontend_locales = [self.default_frontend_locale]
     self.locales = self.built_in_locales
     self.url_filter_enabled = true
+
+    def self.frontend_locales
+      config.frontend_locales.select do |locale|
+        config.locales.keys.include?(locale)
+      end
+    end
   end
 end
