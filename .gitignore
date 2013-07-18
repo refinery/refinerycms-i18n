@@ -84,3 +84,6 @@ db/schema.rb
 
 Gemfile.lock
 spec/dummy
+
+# Local Gemfile for developing without sharing dependencies
+.gemfile
