@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'refinerycms', :github => 'refinery/refinerycms'
+gem 'refinerycms', '~> 2.1.0'
 gem 'refinerycms-testing', '~> 2.1.0', :group => :test
 
 # Database Configuration
