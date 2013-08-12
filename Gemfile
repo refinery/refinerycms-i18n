@@ -2,8 +2,8 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'refinerycms', '~> 2.1.0'
-gem 'refinerycms-testing', '~> 2.1.0', :group => :test
+gem 'refinerycms', :github => 'refinery/refinerycms'
+gem 'refinerycms-testing', :github => 'refinery/refinerycms', :group => :test
 
 # Database Configuration
 unless ENV['TRAVIS']
