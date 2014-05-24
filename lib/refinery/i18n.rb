@@ -21,6 +21,7 @@ module Refinery
           :nb => 'Norsk Bokmål',
           :sl => 'Slovenian',
           :es => 'Español',
+          :ca => 'Català',
           :it => 'Italiano',
           :de => 'Deutsch',
           :lv => 'Latviski',
