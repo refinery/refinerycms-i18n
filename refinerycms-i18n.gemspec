@@ -18,4 +18,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency    'routing-filter',   '>= 0.4.0.dev'
   s.add_dependency    'rails-i18n',       '~> 4.0.1'
+  s.add_dependency    'route_translator', '~> 3.2.4'
 end
