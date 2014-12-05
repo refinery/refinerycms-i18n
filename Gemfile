@@ -2,8 +2,10 @@ source 'https://rubygems.org'
 
 gemspec
 
-gem 'refinerycms', :github => 'refinery/refinerycms'
-gem 'refinerycms-testing', :github => 'refinery/refinerycms', :group => :test
+gem 'refinerycms', :git => 'https://github.com/refinery/refinerycms'
+group :test do
+  gem 'refinerycms-testing', :git => 'https://github.com/refinery/refinerycms'
+end
 
 gem 'mime-types', '~> 1.25.1'
 
