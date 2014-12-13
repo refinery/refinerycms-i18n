@@ -34,7 +34,7 @@ module Refinery
             else
               ::I18n.locale = ::Refinery::I18n.default_frontend_locale
             end
-            Thread.current[:globalize_locale] = ::I18n.locale
+            Globalize.locale = ::I18n.locale
           end
 
           prepend_before_filter :find_or_set_locale
@@ -54,13 +54,13 @@ module Refinery
           def globalize!
             if ::Refinery::I18n.frontend_locales.any?
               if params[:switch_locale]
-                Thread.current[:globalize_locale] = params[:switch_locale].to_sym
+                Globalize.locale = params[:switch_locale].to_sym
               elsif ::I18n.locale != ::Refinery::I18n.default_frontend_locale
-                Thread.current[:globalize_locale] = ::Refinery::I18n.default_frontend_locale
+                Globalize.locale = ::Refinery::I18n.default_frontend_locale
               end
             end
 
-            Thread.current[:globalize_locale] = ::I18n.locale if Thread.current[:globalize_locale].nil?
+            Globalize.locale = ::I18n.locale if Globalize.locale.nil?
           end
           # globalize! should be prepended first so that it runs after find_or_set_locale
           prepend_before_filter :globalize!, :find_or_set_locale
