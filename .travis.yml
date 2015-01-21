@@ -1,5 +1,8 @@
 language: ruby
 bundler_args: --without development
+sudo: false
+cache:
+  - bundler: true
 before_script:
   - "sh -e /etc/init.d/xvfb start"
   - "bundle exec rake refinery:testing:dummy_app"
@@ -23,5 +26,6 @@ env:
   - DB=postgresql
   - DB=mysql
 rvm:
-  - 2.1.0
+  - 2.2
+  - 2.1
   - 2.0.0
