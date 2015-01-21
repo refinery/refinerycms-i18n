@@ -16,7 +16,7 @@ module Refinery
 
     def self.frontend_locales
       config.frontend_locales.select do |locale|
-        config.locales.keys.include?(locale)
+        config.locales.keys.map(&:to_s).include?(locale.to_s)
       end
     end
   end
