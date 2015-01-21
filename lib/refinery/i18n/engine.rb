@@ -28,7 +28,7 @@ module Refinery
 
             if ::Refinery::I18n.has_locale?(locale = params[:locale].try(:to_sym))
               ::I18n.locale = locale
-            elsif locale.present? and locale != ::Refinery::I18n.default_frontend_locale
+            elsif locale.present? && locale != ::Refinery::I18n.default_frontend_locale
               params[:locale] = ::I18n.locale = ::Refinery::I18n.default_frontend_locale
               redirect_to(params, :notice => "The locale '#{locale}' is not supported.") and return
             else
@@ -43,7 +43,7 @@ module Refinery
 
         ::Refinery::AdminController.class_eval do
           def find_or_set_locale
-            if (params[:set_locale] and ::Refinery::I18n.locales.keys.map(&:to_sym).include?(params[:set_locale].to_sym))
+            if (params[:set_locale] && ::Refinery::I18n.locales.keys.map(&:to_sym).include?(params[:set_locale].to_sym))
               ::Refinery::I18n.current_locale = params[:set_locale].to_sym
               redirect_back_or_default(refinery.admin_root_path) and return
             else
