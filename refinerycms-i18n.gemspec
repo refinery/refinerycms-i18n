@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.files             = `git ls-files`.split("\n")
   s.test_files        = `git ls-files -- spec/*`.split("\n")
 
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = '>= 2.0.0'
 
   s.add_dependency    'routing-filter',   '>= 0.4.0'
   s.add_dependency    'rails-i18n',       '~> 4.0.1'

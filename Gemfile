@@ -10,8 +10,6 @@ git "https://github.com/refinery/refinerycms", branch: "master" do
   end
 end
 
-gem "mime-types", "~> 1.25.1"
-
 # Database Configuration
 unless ENV["TRAVIS"]
   gem "activerecord-jdbcsqlite3-adapter", :platform => :jruby
