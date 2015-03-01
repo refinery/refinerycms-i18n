@@ -5,6 +5,8 @@ module Refinery
     def generate_refinery_i18n_initializer
       template "config/initializers/refinery/i18n.rb.erb",
                File.join(destination_root, "config", "initializers", "refinery", "i18n.rb")
+      template "config/initializers/route_translator.rb.erb",
+               File.join(destination_root, "config", "initializers", "route_translator.rb")
     end
 
   end

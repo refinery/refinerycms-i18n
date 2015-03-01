@@ -2,6 +2,7 @@
 require 'refinerycms-core'
 require 'routing-filter'
 require 'rails-i18n'
+require 'route_translator'
 
 module Refinery
   autoload :I18nGenerator, 'generators/refinery/i18n_generator'
