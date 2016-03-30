@@ -37,7 +37,7 @@ module Refinery
             Globalize.locale = ::I18n.locale
           end
 
-          prepend_before_filter :find_or_set_locale
+          prepend_before_action :find_or_set_locale
           protected :default_url_options, :find_or_set_locale
         end
 
@@ -63,7 +63,7 @@ module Refinery
             Globalize.locale = ::I18n.locale if Globalize.locale.nil?
           end
           # globalize! should be prepended first so that it runs after find_or_set_locale
-          prepend_before_filter :globalize!, :find_or_set_locale
+          prepend_before_action :globalize!, :find_or_set_locale
           protected :globalize!, :find_or_set_locale
         end
       end
