@@ -17,11 +17,10 @@ module Refinery
 
       config.to_prepare do
         ::ApplicationController.module_eval do
-          def default_url_options_with_locale
+          def default_url_options
             locale_param=(::Refinery::I18n.config.enabled? && ::I18n.locale != ::Refinery::I18n.default_frontend_locale) ? { :locale => ::I18n.locale } : {}
-            default_url_options_without_locale.reverse_merge locale_param
+            super.reverse_merge locale_param
           end
-          alias_method_chain :default_url_options, :locale
 
           def find_or_set_locale
             ::I18n.locale = ::Refinery::I18n.current_frontend_locale
@@ -37,7 +36,7 @@ module Refinery
             Globalize.locale = ::I18n.locale
           end
 
-          prepend_before_filter :find_or_set_locale
+          prepend_before_action :find_or_set_locale
           protected :default_url_options, :find_or_set_locale
         end
 
@@ -63,7 +62,7 @@ module Refinery
             Globalize.locale = ::I18n.locale if Globalize.locale.nil?
           end
           # globalize! should be prepended first so that it runs after find_or_set_locale
-          prepend_before_filter :globalize!, :find_or_set_locale
+          prepend_before_action :globalize!, :find_or_set_locale
           protected :globalize!, :find_or_set_locale
         end
       end

@@ -2,7 +2,7 @@
 require "spec_helper"
 
 describe "set_locale parameter", :type => :feature do
-  refinery_login_with :refinery_user
+  refinery_login
 
   it "changes language used in backend" do
     visit refinery.admin_pages_path
