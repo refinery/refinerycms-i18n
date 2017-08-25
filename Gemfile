@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gemspec
 
-git "https://github.com/refinery/refinerycms", branch: "feature/rails-5" do
+git "https://github.com/refinery/refinerycms", branch: "master" do
   gem "refinerycms"
 
   group :test do
@@ -34,10 +34,6 @@ group :assets do
   gem "sass-rails"
   gem "coffee-rails"
   gem "uglifier"
-end
-
-group :development, :test do
-  gem 'railties', ['>= 5.0.0', '< 5.1']
 end
 
 # Load local gems according to Refinery developer preference.
