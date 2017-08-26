@@ -20,7 +20,7 @@ module Refinery
         expect(assigns(:resources).first.resource_title).to eql('My resource in English')
 
         # Switch globalized content to ES
-        get :index, switch_locale: :es
+        get :index, params: { switch_locale: :es }
         expect(Globalize.locale).to eql(:es)
         expect(::I18n.locale).to eql(:en)
         expect(assigns(:resources).first.resource_title).to eql('Mi recurso en español')
