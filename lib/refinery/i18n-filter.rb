@@ -15,7 +15,7 @@ module RoutingFilter
       end
 
       yield.tap do |params|
-        params[:locale] = ::I18n.locale
+        params[:locale] = ::I18n.locale.to_s
       end
     end
 
