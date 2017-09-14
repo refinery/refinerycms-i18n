@@ -10,6 +10,10 @@ git "https://github.com/refinery/refinerycms", branch: "master" do
   end
 end
 
+group :development, :test do
+  gem "listen"
+end
+
 # Database Configuration
 unless ENV["TRAVIS"]
   gem "activerecord-jdbcsqlite3-adapter", :platform => :jruby
