@@ -5,7 +5,7 @@ module Refinery
     describe ResourcesController, type: :controller do
       before do
         Globalize.locale = :en
-        @resource = FactoryGirl.create(:resource, :resource_title => "My resource in English")
+        @resource = FactoryBot.create(:resource, :resource_title => "My resource in English")
 
         # Add a translation
         Globalize.locale = :es
