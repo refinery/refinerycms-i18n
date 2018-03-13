@@ -18,8 +18,7 @@ module Refinery
       config.to_prepare do
         ::ApplicationController.module_eval do
           def default_url_options
-            locale_param=(::Refinery::I18n.config.enabled? && ::I18n.locale != ::Refinery::I18n.default_frontend_locale) ? { :locale => ::I18n.locale } : {}
-            super.reverse_merge locale_param
+            super.reverse_merge ({ locale: ::I18n.locale })
           end
 
           def find_or_set_locale
