@@ -2,7 +2,8 @@ source "https://rubygems.org"
 
 gemspec
 
-git "https://github.com/refinery/refinerycms", branch: "master" do
+# TODO: Remove this before merging the feature
+git "https://github.com/refinery/refinerycms", branch: "feature/mobility" do
   gem "refinerycms"
 
   group :test do
