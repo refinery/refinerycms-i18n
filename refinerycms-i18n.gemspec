@@ -18,6 +18,5 @@ Gem::Specification.new do |s|
 
   s.add_dependency    'routing-filter',   '>= 0.4.0'
   s.add_dependency    'rails-i18n',       '~> 5.0.0'
-  # TODO: Use `0.6.0` before merging this PR
-  s.add_dependency    'mobility',         '~> 0.5.0'
+  s.add_dependency    'mobility',         '~> 0.6.0'
 end
