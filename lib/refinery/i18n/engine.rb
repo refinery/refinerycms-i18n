@@ -27,7 +27,7 @@ module Refinery
             if ::Refinery::I18n.has_locale?(locale = params[:locale].try(:to_sym))
               ::I18n.locale = locale
             elsif locale.present? && locale != ::Refinery::I18n.default_frontend_locale
-              params[:locale] = ::I18n.locale.to_s = ::Refinery::I18n.default_frontend_locale.to_s
+              params[:locale] = (::I18n.locale = ::Refinery::I18n.default_frontend_locale).to_s
               redirect_to(params, :notice => "The locale '#{locale}' is not supported.") and return
             else
               ::I18n.locale = ::Refinery::I18n.default_frontend_locale
