@@ -23,7 +23,7 @@ end
 if !ENV["TRAVIS"] || ENV["DB"] == "mysql"
   gem "activerecord-jdbcmysql-adapter", :platform => :jruby
   gem "jdbc-mysql", "= 5.1.13", :platform => :jruby
-  gem "mysql2", :platform => :ruby
+  gem 'mysql2', '~> 0.4.10', :platform => :ruby
 end
 
 if !ENV["TRAVIS"] || ENV["DB"] == "postgresql"
