@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
   s.homepage          = %q{https://refinerycms.com}
-  s.authors           = ['Philip Arndt', 'Uģis Ozols']
+  s.authors           = ['Philip Arndt', 'Uģis Ozols', 'Brice Sanchez']
   s.require_paths     = %w(lib)
   s.license           = %q{MIT}
 
