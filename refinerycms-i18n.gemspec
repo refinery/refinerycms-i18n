@@ -16,8 +16,8 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.2.9'
 
-  s.add_dependency    'routing-filter',   '>= 0.4.0'
-  s.add_dependency    'rails-i18n',       '~> 5.0.0'
+  s.add_dependency    'routing-filter',   '~> 0.4'
+  s.add_dependency    'rails-i18n',       '~> 5.0'
   s.add_dependency    'mobility',         '~> 0.6.0'
 
   s.cert_chain  = [File.expand_path("../certs/parndt.pem", __FILE__)]
