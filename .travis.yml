@@ -1,4 +1,6 @@
 language: ruby
+dist: trusty
+sudo: false
 cache: bundler
 bundler_args: --without development
 before_script: "bin/rake refinery:testing:dummy_app"
@@ -12,4 +14,3 @@ rvm:
   - 2.6.1
   - 2.5.3
   - 2.4.5
-sudo: false
