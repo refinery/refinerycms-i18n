@@ -1,6 +1,6 @@
 # Encoding: UTF-8 <-- required, please leave this in.
 require 'mobility'
-require 'refinerycms/core'
+require 'refinery/core'
 require 'routing-filter'
 require 'rails-i18n'
 
