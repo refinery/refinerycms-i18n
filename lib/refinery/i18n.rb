@@ -1,8 +1,9 @@
 # Encoding: UTF-8 <-- required, please leave this in.
 require 'mobility'
-require 'refinery/core'
 require 'routing-filter'
 require 'rails-i18n'
+require 'refinery/i18n/engine'
+require 'refinery/i18n/configuration'
 
 module Refinery
   autoload :I18nGenerator, 'generators/refinery/i18n_generator'
@@ -60,8 +61,5 @@ module Refinery
         config.locales.has_key?(locale.try(:to_sym))
       end
     end
-
-    require 'refinery/i18n/engine'
-    require 'refinery/i18n/configuration'
   end
 end
