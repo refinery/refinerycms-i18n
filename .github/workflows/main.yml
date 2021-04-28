@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
+      BUNDLE_JOBS: 4
+      BUNDLE_PATH: vendor/bundle
       CI: true
       DB: ${{ matrix.database }}
       MYSQL_PASSWORD: root
