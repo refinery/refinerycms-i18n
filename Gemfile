@@ -14,6 +14,8 @@ group :development, :test do
   gem "listen"
 end
 
+gem 'routing-filter', git: 'https://github.com/svenfuchs/routing-filter', branch: 'master'
+
 # Database Configuration
 unless ENV["TRAVIS"]
   gem "activerecord-jdbcsqlite3-adapter", :platform => :jruby
