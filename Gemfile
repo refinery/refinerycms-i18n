@@ -14,6 +14,8 @@ group :development, :test do
   gem "listen"
 end
 
+gem 'routing-filter', git: 'https://github.com/svenfuchs/routing-filter', branch: 'master'
+
 # Database Configuration
 unless ENV["TRAVIS"]
   gem "activerecord-jdbcsqlite3-adapter", :platform => :jruby
@@ -23,7 +25,7 @@ end
 if !ENV["TRAVIS"] || ENV["DB"] == "mysql"
   gem "activerecord-jdbcmysql-adapter", :platform => :jruby
   gem "jdbc-mysql", "= 5.1.13", :platform => :jruby
-  gem 'mysql2', '~> 0.4.10', :platform => :ruby
+  gem 'mysql2', '>= 0.4', :platform => :ruby
 end
 
 if !ENV["TRAVIS"] || ENV["DB"] == "postgresql"
