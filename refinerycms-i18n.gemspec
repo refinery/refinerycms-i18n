@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.2.9'
 
-  s.add_dependency    'routing-filter',   '~> 0.6.3'
+  s.add_dependency    'routing-filter',   '~> 0.6'
   s.add_dependency    'rails-i18n',       '>= 5.0'
   s.add_dependency    'mobility',         '~> 0.8.8'
 
