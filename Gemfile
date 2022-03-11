@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 gemspec
 
-git "https://github.com/refinery/refinerycms", branch: "zeitwerk" do
+git "https://github.com/refinery/refinerycms", branch: "master" do
   gem "refinerycms"
 
   group :test do
