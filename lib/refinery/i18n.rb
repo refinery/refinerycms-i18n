@@ -1,8 +1,8 @@
 # Encoding: UTF-8 <-- required, please leave this in.
 require 'mobility'
-require 'refinerycms-core'
 require 'routing-filter'
 require 'rails-i18n'
+require 'refinery/i18n/engine'
 
 module Refinery
   autoload :I18nGenerator, 'generators/refinery/i18n_generator'
@@ -61,7 +61,6 @@ module Refinery
       end
     end
 
-    require 'refinery/i18n/engine'
     require 'refinery/i18n/configuration'
   end
 end
