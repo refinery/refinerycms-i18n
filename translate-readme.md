@@ -1,9 +1,10 @@
 Translate
 =========
 
-This plugin provides a web interface for translating Rails I18n texts (requires Rails 2.2 or higher) from one locale to another. The plugin has been tested only with the simple I18n backend that ships with Rails. I18n texts are read from and written to YAML files under config/locales.
+This plugin provides a web interface for translating Rails I18n texts (requires Rails 2.2 or higher) from one locale to another. The plugin has been tested only with the simple I18n backend that ships with Rails. I18n texts are read from and written to YAML files under `config/locales`.
 
-To translate to a new locale you need to add a YAML file for that locale that contains the locale as the top key and at least one translation.
+To translate to a new locale you need to add a YAML file for that locale.
+A translation file has the _locale_ as the top key and at least one translation.
 
 Please note that there are certain I18n keys that map to Array objects rather than strings and those are currently not dealt with by the translation UI. This means that Rails built in keys such as date.day_names need to be translated manually directly in the YAML file.
 
@@ -19,21 +20,29 @@ Rake Tasks
 
 In addition to the web UI this plugin adds the following rake tasks:
 
-translate:lost_in_translation
-translate:merge_keys
-translate:google
-translate:changed
+* translate:lost_in_translation
+* translate:merge_keys
+* translate:google
+* translate:changed
 
-The lost_in_translation task shows you any I18n keys in your code that are do not have translations in the YAML file for your default locale, i.e. config/locales/sv.yml.
+### Lost in Translation
+The `translate:lost_in_translation` task shows you any I18n keys in your code that are do not have translations in the YAML file for your default locale, i.e. config/locales/sv.yml.
 
-The merge_keys task is supposed to be used in conjunction with Sven Fuch's Rails I18n TextMate bundle (http://github.com/svenfuchs/rails-i18n/tree/master). Texts and keys extracted with the TextMate bundle end up in the temporary file log/translations.yml. When you run the merge_keys rake task the keys are moved over to the corresponding I18n locale file, i.e. config/locales/sv.yml. The merge_keys task also checks for overwrites of existing keys by warning you that one of your extracted keys already exists with a different translation.
+### Merge Keys
+The `translate:merge_keys` task is supposed to be used in conjunction with Sven Fuch's [Rails I18n TextMate bundle](http://github.com/svenfuchs/rails-i18n/tree/master). 
 
-The google task is used for auto translating from one locale to another using Google Translate.
+Texts and keys extracted with the TextMate bundle end up in a temporary file `log/translations.yml`. 
+When you run the `merge_keys` rake task these keys are moved to the corresponding I18n locale file, i.e. `config/locales/sv.yml`. 
+The `merge_keys` task also warns you if one of your extracted keys will overwrite an existing translation.
 
-The changed rake task can show you between one YAML file to another which keys have had their texts changed.
+### Translate Google
+The `translate:google` task is used for auto translating from one locale to another using Google Translate.
 
-Installation
-=========
+### Translate Changed
+The `translate:changed` task can show you which keys have had their texts changed between one file and another.
+
+## Installation
+
 Obtain the source with:
 
 ./script/plugin install git://github.com/newsdesk/translate.git
