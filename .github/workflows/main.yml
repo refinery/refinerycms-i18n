@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         database: [ mysql, postgresql ]
-        ruby: [ 2.7, 2.6 ]
+        ruby: [ 3.1 ]
       fail-fast: false
       max-parallel: 10
     runs-on: ubuntu-latest
