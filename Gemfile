@@ -1,9 +1,7 @@
 source "https://rubygems.org"
-refinery_root = "/private/var/www/refinery"
 gemspec
 #
-# git "https://github.com/refinery/refinerycms", branch: "master" do
-path "#{refinery_root}/refinerycms" do
+git "https://github.com/anitagraham/refinerycms", branch: "ruby3" do
   gem "refinerycms"
 
   group :test do
