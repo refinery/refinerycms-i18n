@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
-  s.version           = %q{5.0.1}
+  s.version           = %q{5.0.2}
   s.description       = %q{i18n logic extracted from Refinery CMS, for Refinery CMS.}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.7'
 
-  s.add_dependency    'routing-filter',   '~> 0.6'
+  s.add_dependency    'routing-filter',   '~> 0.7'
   s.add_dependency    'rails-i18n',       '>= 5.0'
   s.add_dependency    'mobility',         '~> 1.2.9'
 

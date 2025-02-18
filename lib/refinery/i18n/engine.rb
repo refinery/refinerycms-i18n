@@ -18,22 +18,24 @@ module Refinery
       config.to_prepare do
         ::ApplicationController.module_eval do
           def default_url_options
-            super.reverse_merge ({ locale: ::I18n.locale })
+            super.reverse_merge({ locale: ::I18n.locale })
           end
 
           def find_or_set_locale
-            ::I18n.locale = ::Refinery::I18n.current_frontend_locale
+            locale = params[:locale]&.to_sym
+            ::I18n.locale = ::Refinery::I18n.default_frontend_locale
 
-            if ::Refinery::I18n.has_locale?(locale = params[:locale].try(:to_sym))
+            if valid_locale?(locale) || locale == ::Refinery::I18n.default_frontend_locale
               ::I18n.locale = locale
-            elsif locale.present? && locale != ::Refinery::I18n.default_frontend_locale
-              ::I18n.locale = ::Refinery::I18n.default_frontend_locale
+            else
               redirect_to(params.permit(:locale).merge(locale: ::I18n.locale),
                           notice: "The locale '#{locale}' is not supported.") and return
-            else
-              ::I18n.locale = ::Refinery::I18n.default_frontend_locale
             end
             Mobility.locale = ::I18n.locale
+          end
+
+          def valid_locale?(locale)
+            locale && ::Refinery::I18n.locales.keys.include?(locale)
           end
 
           prepend_before_action :find_or_set_locale
@@ -42,12 +44,17 @@ module Refinery
 
         ::Refinery::AdminController.class_eval do
           def find_or_set_locale
-            if (params[:set_locale] && ::Refinery::I18n.locales.keys.map(&:to_sym).include?(params[:set_locale].to_sym))
-              ::Refinery::I18n.current_locale = params[:set_locale].to_sym
+            locale = params[:set_locale]&.to_sym
+            if valid_locale?(locale)
+              ::Refinery::I18n.current_locale = locale
               redirect_back_or_default(refinery.admin_root_path) and return
             else
               ::I18n.locale = ::Refinery::I18n.current_locale
             end
+          end
+
+          def valid_locale?(locale)
+            locale && ::Refinery::I18n.locales.keys.include?(locale)
           end
 
           def globalize!
@@ -61,9 +68,11 @@ module Refinery
               end
             end
           end
+
           # globalize! should be prepended first so that it runs after find_or_set_locale
           prepend_before_action :globalize!, :find_or_set_locale
           protected :globalize!, :find_or_set_locale
+          private :valid_locale?
         end
       end
 
