@@ -28,15 +28,14 @@ module RoutingFilter
       end
     end
 
-    private
     # locale should be inserted if filtering AND not in default locale AND not a backend url
-    def url_needs_locale?(url, locale)
-      ::Refinery::I18n.url_filter_enabled? and
-        locale != ::Refinery::I18n.default_frontend_locale  and
-        url !~ %r{(#{Refinery::Core.backend_route}|wymiframe)}
+    private def url_needs_locale?(url, locale)
+      ::Refinery::I18n.url_filter_enabled? &&
+        locale != ::Refinery::I18n.default_frontend_locale &&
+        url !~ %r{^/(#{Refinery::Core.backend_route}|wymiframe)}
     end
 
-    def insert_locale(url, locale)
+    private def insert_locale(url, locale)
       url.sub!(%r(^(http.?://[^/]*)?(.*))) { "#{$1}/#{locale}#{$2}" }
     end
   end
