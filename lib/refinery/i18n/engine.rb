@@ -25,8 +25,8 @@ module Refinery
             locale = params[:locale]&.to_sym
             ::I18n.locale = ::Refinery::I18n.default_frontend_locale
 
-            if valid_locale?(locale) || locale == ::Refinery::I18n.default_frontend_locale
-              ::I18n.locale = locale
+            if locale.nil? || valid_locale?(locale) || locale == ::Refinery::I18n.default_frontend_locale
+              ::I18n.locale = locale || ::Refinery::I18n.default_frontend_locale
             else
               redirect_to(params.permit(:locale).merge(locale: ::I18n.locale),
                           notice: "The locale '#{locale}' is not supported.") and return
