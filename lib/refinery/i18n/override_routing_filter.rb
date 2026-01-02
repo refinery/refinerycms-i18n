@@ -1,10 +1,3 @@
-# from: https://github.com/svenfuchs/routing-filter/pull/87
-# Removing the (existing) broken find_routes override from the routing-filter gem first
-if defined?(ActionDispatchJourneyRouterWithFiltering) &&
-   ActionDispatchJourneyRouterWithFiltering.method_defined?(:find_routes)
-  ActionDispatchJourneyRouterWithFiltering.remove_method(:find_routes)
-end
-
 module RoutingFilterOverrideShared
   private
 
@@ -21,6 +14,13 @@ module RoutingFilterOverrideShared
 end
 
 if Rails::VERSION::MAJOR == 8 && Rails::VERSION::MINOR >= 1
+  # from: https://github.com/svenfuchs/routing-filter/pull/87
+  # Removing the (existing) broken find_routes override from the routing-filter gem first
+  if defined?(ActionDispatchJourneyRouterWithFiltering) &&
+    ActionDispatchJourneyRouterWithFiltering.method_defined?(:find_routes)
+    ActionDispatchJourneyRouterWithFiltering.remove_method(:find_routes)
+  end
+
   # Rails 8.1+ uses recognize method instead of find_routes
   module CustomOverridesActionDispatchJourneyRouterRails8
     include RoutingFilterOverrideShared
@@ -40,7 +40,14 @@ if Rails::VERSION::MAJOR == 8 && Rails::VERSION::MINOR >= 1
   end
 
   ActionDispatch::Journey::Router.prepend(CustomOverridesActionDispatchJourneyRouterRails8)
-else
+elsif Rails::VERSION::MAJOR == 8 || (Rails::VERSION::MAJOR == 7 && Rails::VERSION::MINOR >= 1)
+  # from: https://github.com/svenfuchs/routing-filter/pull/87
+  # Removing the (existing) broken find_routes override from the routing-filter gem first
+  if defined?(ActionDispatchJourneyRouterWithFiltering) &&
+    ActionDispatchJourneyRouterWithFiltering.method_defined?(:find_routes)
+    ActionDispatchJourneyRouterWithFiltering.remove_method(:find_routes)
+  end
+
   # Rails < 8.1 uses find_routes method
   module CustomOverridesActionDispatchJourneyRouterWithFiltering
     include RoutingFilterOverrideShared
