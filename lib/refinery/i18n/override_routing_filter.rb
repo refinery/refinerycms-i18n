@@ -2,6 +2,7 @@
 #
 # Rails 7.1 changed from find_routes to recognize method in ActionDispatch::Journey::Router
 # Rails 8.0 continued using recognize method
+# Rails 8.1 may have additional changes
 # This file provides compatible implementations for all versions.
 
 # First, remove the old broken override if it exists
@@ -11,9 +12,7 @@ if defined?(ActionDispatchJourneyRouterWithFiltering) &&
 end
 
 module RoutingFilterOverrideShared
-  private
-  
-  def apply_routing_filters(path, env)
+  private def apply_routing_filters(path, env)
     filter_parameters = {}
     original_path = path.dup
     
@@ -25,9 +24,9 @@ module RoutingFilterOverrideShared
   end
 end
 
-if Rails::VERSION::MAJOR >= 8
-  # Rails 8.0+ uses recognize method
-  module CustomOverridesActionDispatchJourneyRouterRails8
+if Rails::VERSION::MAJOR == 8 && Rails::VERSION::MINOR >= 1
+  # Rails 8.1+ uses recognize method with potential changes
+  module CustomOverridesActionDispatchJourneyRouterRails81
     include RoutingFilterOverrideShared
     
     def recognize(req, &block)
@@ -42,10 +41,9 @@ if Rails::VERSION::MAJOR >= 8
     end
   end
   
-  ActionDispatch::Journey::Router.prepend(CustomOverridesActionDispatchJourneyRouterRails8)
-
-elsif Rails::VERSION::MAJOR == 7 && Rails::VERSION::MINOR >= 1
-  # Rails 7.1.x uses recognize method
+  ActionDispatch::Journey::Router.prepend(CustomOverridesActionDispatchJourneyRouterRails81)
+elsif Rails::VERSION::MAJOR == 8 || (Rails::VERSION::MAJOR >= 7 && Rails::VERSION::MINOR >= 1)
+  # Rails 7.1+ and Rails 8.0 use recognize method
   module CustomOverridesActionDispatchJourneyRouterRails71
     include RoutingFilterOverrideShared
     
@@ -62,7 +60,6 @@ elsif Rails::VERSION::MAJOR == 7 && Rails::VERSION::MINOR >= 1
   end
   
   ActionDispatch::Journey::Router.prepend(CustomOverridesActionDispatchJourneyRouterRails71)
-
 else
   # Rails < 7.1 uses find_routes method
   module CustomOverridesActionDispatchJourneyRouterWithFiltering
