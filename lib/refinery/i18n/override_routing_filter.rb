@@ -1,5 +1,10 @@
-# from: https://github.com/svenfuchs/routing-filter/pull/87
-# Removing the (existing) broken find_routes override from the routing-filter gem first
+# Routing Filter Rails Compatibility Fix
+#
+# Rails 7.1 changed from find_routes to recognize method in ActionDispatch::Journey::Router
+# Rails 8.0 continued using recognize method
+# This file provides compatible implementations for all versions.
+
+# First, remove the old broken override if it exists
 if defined?(ActionDispatchJourneyRouterWithFiltering) &&
    ActionDispatchJourneyRouterWithFiltering.method_defined?(:find_routes)
   ActionDispatchJourneyRouterWithFiltering.remove_method(:find_routes)
@@ -21,7 +26,7 @@ module RoutingFilterOverrideShared
 end
 
 if Rails::VERSION::MAJOR >= 8
-  # Rails 8.0+ uses recognize method instead of find_routes
+  # Rails 8.0+ uses recognize method
   module CustomOverridesActionDispatchJourneyRouterRails8
     include RoutingFilterOverrideShared
     
@@ -29,33 +34,57 @@ if Rails::VERSION::MAJOR >= 8
       path, original_path, filter_parameters = apply_routing_filters(req.path_info, req.env)
       req.path_info = path
       
-      ##### OVERRIDE STARTS #####
       super(req) do |route, parameters|
         parameters.merge!(filter_parameters)
         req.path_info = original_path
         yield route, parameters
       end.tap { req.path_info = original_path }
-      ##### OVERRIDE ENDS #####
     end
   end
   
   ActionDispatch::Journey::Router.prepend(CustomOverridesActionDispatchJourneyRouterRails8)
-else
-  # Rails < 8 uses find_routes method
-  module CustomOverridesActionDispatchJourneyRouterWithFiltering
+
+elsif Rails::VERSION::MAJOR == 7 && Rails::VERSION::MINOR >= 1
+  # Rails 7.1.x uses recognize method
+  module CustomOverridesActionDispatchJourneyRouterRails71
     include RoutingFilterOverrideShared
     
+    def recognize(req, &block)
+      path, original_path, filter_parameters = apply_routing_filters(req.path_info, req.env)
+      req.path_info = path
+      
+      super(req) do |route, parameters|
+        parameters.merge!(filter_parameters)
+        req.path_info = original_path
+        yield route, parameters
+      end.tap { req.path_info = original_path }
+    end
+  end
+  
+  ActionDispatch::Journey::Router.prepend(CustomOverridesActionDispatchJourneyRouterRails71)
+
+else
+  # Rails < 7.1 uses find_routes method
+  module CustomOverridesActionDispatchJourneyRouterWithFiltering
     def find_routes(env)
       path = env.is_a?(Hash) ? env['PATH_INFO'] : env.path_info
-      path, original_path, filter_parameters = apply_routing_filters(path, env)
-      
-      ##### OVERRIDE STARTS #####
-      super(env) do |match, parameters, route|
-        parameters = parameters.merge(filter_parameters)
-        env.is_a?(Hash) ? env['PATH_INFO'] = original_path : env.path_info = original_path
-        yield [match, parameters, route]
+      filter_parameters = {}
+      original_path = path.dup
+
+      @routes.filters.run(:around_recognize, path, env) do
+        filter_parameters
       end
-      ##### OVERRIDE ENDS #####
+
+      super(env).map do |match, parameters, route|
+        [ match, parameters.merge(filter_parameters), route ]
+      end.tap do
+        # restore the original path
+        if env.is_a?(Hash)
+          env['PATH_INFO'] = original_path
+        else
+          env.path_info = original_path
+        end
+      end
     end
   end
   
