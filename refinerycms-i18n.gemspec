@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency    'routing-filter',   '~> 0.7'
   s.add_dependency    'rails-i18n',       '>= 5.0'
-  s.add_dependency    'mobility',         '~> 1.2.9'
+  s.add_dependency    'mobility',         '~> 1.2'
 
   s.cert_chain  = [File.expand_path("../certs/parndt.pem", __FILE__)]
   if $0 =~ /gem\z/ && ARGV.include?("build") && ARGV.include?(__FILE__)
