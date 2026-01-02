@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-i18n}
-  s.version           = %q{5.0.1}
+  s.version           = %q{5.1.0}
   s.description       = %q{i18n logic extracted from Refinery CMS, for Refinery CMS.}
   s.summary           = %q{i18n logic for Refinery CMS.}
   s.email             = %q{info@refinerycms.com}
@@ -14,11 +14,11 @@ Gem::Specification.new do |s|
   s.files             = `git ls-files`.split("\n")
   s.test_files        = `git ls-files -- spec/*`.split("\n")
 
-  s.required_ruby_version = '>= 2.2.9'
+  s.required_ruby_version = '>= 2.7'
 
-  s.add_dependency    'routing-filter',   '~> 0.6'
+  s.add_dependency    'routing-filter',   '~> 0.7'
   s.add_dependency    'rails-i18n',       '>= 5.0'
-  s.add_dependency    'mobility',         '~> 0.8.8'
+  s.add_dependency    'mobility',         '~> 1.2'
 
   s.cert_chain  = [File.expand_path("../certs/parndt.pem", __FILE__)]
   if $0 =~ /gem\z/ && ARGV.include?("build") && ARGV.include?(__FILE__)

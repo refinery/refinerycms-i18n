@@ -24,13 +24,19 @@ module RoutingFilter
 
       yield.tap do |result|
         result = result.is_a?(Array) ? result.first : result
-        if ::Refinery::I18n.url_filter_enabled? and
-           locale != ::Refinery::I18n.default_frontend_locale and
-           result.url !~ %r{^/(#{Refinery::Core.backend_route}|wymiframe)}
-          result.url.sub!(%r(^(http.?://[^/]*)?(.*))) { "#{$1}/#{locale}#{$2}" }
-        end
+        insert_locale(result.url, locale) if url_needs_locale?(result.url, locale)
       end
     end
 
+    # locale should be inserted if filtering AND not in default locale AND not a backend url
+    private def url_needs_locale?(url, locale)
+      ::Refinery::I18n.url_filter_enabled? &&
+        locale != ::Refinery::I18n.default_frontend_locale &&
+        url !~ %r{^/(#{Refinery::Core.backend_route}|wymiframe)}
+    end
+
+    private def insert_locale(url, locale)
+      url.sub!(%r(^(http.?://[^/]*)?(.*))) { "#{$1}/#{locale}#{$2}" }
+    end
   end
 end

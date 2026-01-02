@@ -3,6 +3,7 @@ require 'mobility'
 require 'routing-filter'
 require 'rails-i18n'
 require 'refinery/i18n/engine'
+require 'refinery/i18n/override_routing_filter'
 
 module Refinery
   autoload :I18nGenerator, 'generators/refinery/i18n_generator'
